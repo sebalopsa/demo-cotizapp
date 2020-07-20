@@ -1,0 +1,41 @@
+.cambiar-foto {
+    position: absolute;
+    border-radius: 50%;
+    left: calc(50% - 64px);
+    top: 0px;
+    width: 128px;
+    height: 128px;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+input[type="file"]#inputFoto {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+label[for="inputFoto"] {
+    position: absolute;
+    cursor: pointer;
+    visibility: hidden;
+}
+
+a:hover>.oculto {
+    visibility: visible
+}
+
+img{
+    object-fit: cover;
+}

@@ -1,0 +1,12 @@
+<!-- <div class="form-group"> -->
+<div class="input-group input-group-{{size}}">
+  <input [disabled]="disabled" class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="dateObj"
+    (ngModelChange)="onDateChange($event)" [minDate]="epochToDateObj(minDate)" [maxDate]="epochToDateObj(maxDate)"
+    ngbDatepicker #d="ngbDatepicker" container="body">
+  <div class="input-group-append">
+    <button [disabled]="disabled" class="btn btn-outline-secondary" (click)="d.toggle()" type="button"><i
+        class="fa fa-calendar"></i>
+    </button>
+  </div>
+</div>
+<!-- </div> -->

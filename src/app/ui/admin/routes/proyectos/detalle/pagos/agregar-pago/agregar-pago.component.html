@@ -1,0 +1,77 @@
+<app-modal-template modalTitle="Agregar pago" noPadding>
+  <ng-template #modalBody>
+
+      <search [(searchText)]="filter" class="mx-20 mt-20"></search>
+
+    <div *ngIf="(loading$ | async)" class="block-content row">
+      <div class="col align-self-center text-center">
+        <i class="fa super-icon fa-cog fa-spin fa-4x"></i>
+        <h5 class="text-muted">Cargando...</h5>
+      </div>
+    </div>
+    <div *ngIf="!(loading$ | async)" class="block-content">
+      <table class="table table-striped table-vcenter table-hover table-bordered">
+        <thead>
+          <tr>
+            <th>NRO.</th>
+            <th>FECHA</th>
+            <th>SERVICIO</th>
+            <th class="text-right">MONTO</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let doc of documentos$ | async | filter:filter" class="pointer"
+            (click)="confirmarModal(confirmContent)">
+            <td>
+              <a class="font-w600">{{doc?.folio}}</a>
+            </td>
+            <td class="d-none d-sm-table-cell">
+              <i>{{doc?.timestamp | date:'dd-MM-yyyy'}}</i> </td>
+            <td class="d-none d-sm-table-cell">
+              <span class="font-w600 text-muted">{{doc?.servicio}}</span><br> <i class="font-weight-normal">para
+              </i><span class="text-muted">{{doc?.cliente?.nombre}}</span>
+            </td>
+            <td class="text-right">
+              <span class="text-black">${{doc?.total | number:'1.0-0'}}</span>
+            </td>
+            <!-- Modal confirmacion al eliminar -->
+            <ng-template #confirmContent let-modal>
+              <div class="modal-header text center" style="background-color: #41484e;">
+                <h5 class="modal-title text-center text-white">Confirmación</h5>
+              </div>
+              <div class="modal-body">
+                <h5 class="text-muted">¿Está seguro que desea asignar este estado de pago al proyecto?
+                </h5>
+                <div class="text-center">
+                  <a class="btn btn-outline-primary mr-2" (click)="modal.close()">
+                    No
+                  </a>
+                  <a class="btn btn-primary text-white" (click)="seleccionar(doc);modal.close()">
+                    Si
+                  </a>
+                </div>
+              </div>
+            </ng-template>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+  </ng-template>
+
+  <ng-template #modalFooter>
+    <button class="btn btn-secondary" (click)="cerrar()">Volver</button>
+  </ng-template>
+
+
+  <!-- <ng-template #modalContent>
+  <div class="text-center">
+    <button type="button" class="btn btn-sm btn-outline-info mr-2" (click)="p.close()">
+      No
+    </button>
+    <button type="button" class="btn btn-sm btn-info" (click)="seleccionar(doc);p.close()">
+      Si
+    </button>
+  </div>
+</ng-template> -->

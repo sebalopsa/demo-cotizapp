@@ -1,0 +1,121 @@
+<div class="block-content block-content-full">
+  <h2 class="content-heading text-black pt-20">Datos Personales</h2>
+  <table class="table table-sm table-borderless table-hover">
+
+    <!-- Cuando no está en edición -->
+    <tbody *ngIf="!editing">
+      <tr>
+        <th class="text-left" scope="row"><label>Rut: </label></th>
+        <td><span class="datos-trabajador">
+            {{trabajador?.rut | rut}}</span>
+
+        </td>
+      </tr>
+      <tr>
+        <th class="text-left" scope="row"><label>Nombre: </label></th>
+        <td><span *ngIf="!editing" class="datos-trabajador">
+            {{trabajador?.nombre}}</span></td>
+
+      </tr>
+
+      <tr>
+        <th class="text-left" scope="row"><label>Apellidos: </label></th>
+        <td><span *ngIf="!editing" class="datos-trabajador">
+            {{trabajador?.apellidos}}</span></td>
+
+      </tr>
+      <tr>
+        <th class="text-left" scope="row"><label>Fecha de Nacimiento: </label></th>
+        <td><span *ngIf="!editing" class="datos-trabajador">
+            {{trabajador?.nacimiento}}</span></td>
+
+      </tr>
+      <tr>
+        <th class="text-left" scope="row"><label>Dirección: </label></th>
+        <td><span *ngIf="!editing" class="datos-trabajador">
+            {{trabajador?.direccion}}</span></td>
+
+      </tr>
+
+      <tr>
+        <th class="text-left" scope="row"><label>Teléfono: </label></th>
+        <td><span *ngIf="!editing" class="datos-trabajador">
+            {{trabajador?.telefono}}</span></td>
+
+      </tr>
+      <tr>
+        <th class="text-left" scope="row"><label>Email: </label></th>
+        <td><span *ngIf="!editing" class="datos-trabajador">
+            {{trabajador?.email}}</span></td>
+
+      </tr>
+
+    </tbody>
+    <!-- Cuando no está en edición -->
+
+
+    <!-- Cuando ESTÁ en edición -->
+    <tbody *ngIf="editing" [formGroup]="trabajadorForm">
+      <tr>
+        <th class="text-left" scope="row"><label>Rut: </label></th>
+        <td>
+            <input type="text" class="form-control form-control-sm {{rutControl.errors?.invalidRut && (rutControl.dirty || rutControl.touched)?'is-invalid':''}}"
+            formControlName="rut" placeholder="Rut" formatRut>
+        </td>
+      </tr>
+      <tr>
+        <th class="text-left" scope="row"><label>Nombre: </label></th>
+        <td>
+            <input type="text" class="form-control form-control-sm"
+            formControlName="nombre" placeholder="Nombre">
+        </td>
+
+      </tr>
+
+      <tr>
+        <th class="text-left" scope="row"><label>Apellidos: </label></th>
+        <td>
+            <input type="text" class="form-control form-control-sm"
+            formControlName="apellidos" placeholder="Apellidos">
+        </td>
+
+      </tr>
+      <tr>
+        <th class="text-left" scope="row"><label>Fecha de Nacimiento: </label></th>
+        <td>
+            <input type="date" class="form-control form-control-sm"
+            formControlName="nacimiento" placeholder="Fecha de nacimiento">
+        </td>
+
+      </tr>
+      <tr>
+        <th class="text-left" scope="row"><label>Dirección: </label></th>
+        <td>
+            <input type="text" class="form-control form-control-sm"
+            formControlName="direccion" placeholder="Direccion">
+        </td>
+
+      </tr>
+
+      <tr>
+        <th class="text-left" scope="row"><label>Teléfono: </label></th>
+        <td>
+            <input type="text" class="form-control form-control-sm"
+            formControlName="telefono" placeholder="Telefono">
+        </td>
+
+      </tr>
+      <tr>
+        <th class="text-left" scope="row"><label>Email: </label></th>
+        <td>
+            <input type="text" class="form-control form-control-sm"
+            formControlName="email" placeholder="E-mail">
+        </td>
+
+      </tr>
+
+    </tbody>
+    <!-- Cuando ESTÁ en edición -->
+
+  </table>
+</div>

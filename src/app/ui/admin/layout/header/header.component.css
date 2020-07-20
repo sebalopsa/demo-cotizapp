@@ -1,0 +1,18 @@
+clr-header{
+    background-color: #FFFFFF !important;
+    height: 50px;
+    border-bottom: 1px solid rgb(226, 226, 226);
+}
+
+.branding, .header-nav, .header-actions, .nav-link{
+    color: #282425 !important;
+    height: 50px !important;
+}
+
+.title{
+        color: #282425 !important;
+}
+
+.logout{
+    color:#006596
+}

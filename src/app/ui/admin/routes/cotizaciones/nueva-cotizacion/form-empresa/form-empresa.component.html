@@ -1,0 +1,40 @@
+<div class="row bordered">
+  <!-- LOGO -->
+  <div class="col-lg-5">
+    <div class="text-center highlight">
+      <img src="../../../../../../assets/img/logo.png" width="60%" alt="roccflex">
+      <!-- <p class="mb-0 font-w600">Mi Empresa</p> -->
+      <!-- <p style="font-size: 0.8em">Geomembrana - Termofusión - HDPE</p> -->
+    </div>
+  </div>
+  <!-- //LOGO -->
+  <!-- DATOS EMISOR -->
+  <div class="col-lg-7 mt-10">
+    <h6 class="text-center text-primary-dark my-5">Mi Empresa</h6>
+    <table class="table table-borderless table-hover">
+      <tbody>
+        <tr>
+          <td class="font-w600"> <label for="rut"> Rut:</label></td>
+          <td [formGroup]="parentForm">
+            <select disabled class="form-control" id="rut" name="rut" [formControlName]="'emisor'" [compareWith]="compareFn">
+              <option [ngValue]="sociedad" *ngFor="let sociedad of sociedades"> {{sociedad.rut | rut}}</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td class="font-w600">Direccion:</td>
+          <td> {{parentForm.value.emisor.direccion}}</td>
+        </tr>
+        <tr>
+          <td class="font-w600">Teléfono:</td>
+          <td> {{parentForm.value.emisor.telefono}}</td>
+        </tr>
+        <tr>
+          <td class="font-w600">Correo:</td>
+          <td> {{parentForm.value.emisor.email}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!-- //DATOS EMISOR -->
+</div>

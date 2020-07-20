@@ -1,0 +1,94 @@
+<div class="main-container">
+  <div class="login-panel card bg-light">
+    <div class="login-panel-header">
+      <div class="logo text-center p-4">
+        <img src="../../assets/img/logo.png" alt="gestion de documentos" width="100px">
+        <!-- <h4 class="text-center font-weight-normal text-black-50 mt-2">app</h4> -->
+      </div>
+    </div>
+    <form class="login-panel-form m-2">
+      <div class="input-group mb-2">
+        <div class="input-group-prepend">
+          <span class="input-group-text"><i class="fa fa-user"></i></span>
+        </div>
+        <input type="text" class="form-control" placeholder="Usuario" name="login-username" [(ngModel)]="form.userName">
+      </div>
+      <div class="input-group mb-2">
+        <div class="input-group-prepend">
+          <span class="input-group-text"><i class="fa fa-key"></i></span>
+        </div>
+        <input type="password" class="form-control" placeholder="Password" name="login-password" [(ngModel)]="form.password">
+      </div>
+      <small *ngIf="showNotification" class="text-danger text-center">{{errorMessage}}</small>
+      <div class="form-group form-check mb-5">
+        <input type="checkbox" class="form-check-input" id="permanent">
+        <label class="form-check-label" for="permanent">Mantener la sesión iniciada</label>
+      </div>
+      <button type="button" class="btn btn-primary float-right" (click)="login()">
+        Iniciar sesión
+        <span class="spinner-border spinner-border-sm ml-2" *ngIf="loading"></span>
+
+      </button>
+    </form>
+
+  </div>
+</div>
+
+
+<!-- <div id="page-container" class="main-content-boxed side-trans-enabled">
+  <main id="main-container" style="min-height: 657px;">
+    <div class="bg-body-dark bg-pattern">
+      <div class="layer">
+      </div>
+      <div class="row mx-0 justify-content-center">
+        <div class="hero-static col-lg-6 col-xl-4">
+          <div class="content content-full overflow-hidden">
+            <div class="py-30 text-center">
+              <img src="../../../../../assets/img/roccflex.png" alt="" width="200px">
+              <h1 class="h4 font-w700 mt-30 mb-10">Bienvenido a Roccflex ERP!</h1>
+              <h2 class="h5 font-w400 text-muted mb-0">Plataforma de Gestión Empresarial</h2>
+            </div>
+            <form class="js-validation-signin" (ngSubmit)="login()">
+              <div class="block block-themed block-rounded block-shadow">
+                <div class="block-header bg-muted">
+                  <h3 class="block-title">Ingrese con email y contraseña</h3>
+                </div>
+                <div class="block-content">
+                  <div *ngIf="showNotification" class="alert alert-danger alert-dismissable">
+                    <button type="button" class="close" (click)=cerrarNotificacion()>
+                      <span aria-hidden="true">×</span>
+                    </button>
+                    <p class="mb-0">{{(error$ | async).message}}</p>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-12">
+                      <label for="login-username">Email</label>
+                      <input type="text" class="form-control" id="login-username" name="login-username"
+                        [(ngModel)]="form.userName">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-12">
+                      <label for="login-password">Password</label>
+                      <input type="password" class="form-control" id="login-password" name="login-password"
+                        [(ngModel)]="form.password">
+                    </div>
+                  </div>
+                  <div class="form-group row mb-0">
+                    <div class="col-sm-6 d-sm-flex align-items-center push">
+                    </div>
+                    <div class="col-sm-6 text-sm-right push">
+                      <button type="submit" class="btn btn-alt-primary">
+                        <i class="si si-login mr-10"></i> Entrar
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div> -->

@@ -1,0 +1,31 @@
+<div *ngIf="(loading$ | async)" class="hero">
+    <div class="hero-inner">
+        <div class="content content-full text-center">
+            <i class="fa super-icon fa-cog fa-spin"></i>
+            <h5 class="text-muted">Cargando...</h5>
+        </div>
+    </div>
+</div>
+<div *ngIf="!(loading$ | async)" class="content">
+    <nav class="breadcrumb bg-white push">
+        <a class="breadcrumb-item text-uppercase" routerLink="/actividad">Actividad</a>
+        <span class="breadcrumb-item active">Registro de actividad</span>
+    </nav>
+    <h2 class="content-heading">REGISTRO DE ACTIVIDAD</h2>
+    <div class="block block-bordered-2">
+        <div class="block-content bg-body-light pb-20">
+            <search [(searchText)]="filter"></search>
+        </div>
+        <div class="block-content block-content-full p-30">
+            <ul class="list list-timeline list-timeline-modern pull-t">
+                <li *ngFor="let log of logsFacade.logs$ | async | filter:filter" class="log">
+                    <div class="list-timeline-time">{{log.timestamp | date:'dd/MM/yyyy hh:mm:ss a'}}</div>
+                    <i class="list-timeline-icon {{icon(log)}} bg-{{color(log)}}"></i>
+                    <div class="list-timeline-content">
+                        <p> <b>{{log.usuario}} </b>{{texto(log)}}</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

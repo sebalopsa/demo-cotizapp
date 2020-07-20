@@ -1,0 +1,67 @@
+<card-template cardTitle="ingresos" noPadding>
+  <ng-template #btnTemplate>
+    <a class="card-action btn-block-option" (click)="agregarPagoModal()" ngbTooltip="Asignar Estado de Pago">
+      <i class="fa fa-plus text-white"></i>
+    </a>
+  </ng-template>
+
+  <ng-template #componentTemplate>
+
+    <table *ngIf="proyecto?.pagos?.length" class="table table-hover table-sm table-vcenter">
+      <thead>
+        <tr class="text-muted font-size-sm text-center">
+          <th scope="col">ep</th>
+          <th scope="col">fecha</th>
+          <th scope="col">monto</th>
+          <th scope="col">est.</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="text-center" style="height:3em!important;font-size: 14px"
+          *ngFor="let pago of proyecto?.pagos; let i = index">
+          <td>
+            <a class="text-info" href="{{pago?.estadoPago?.url}}" target="_blank">EP {{pago?.estadoPago?.folio}}</a>
+          </td>
+          <td>
+            <small><i>{{pago?.estadoPago?.fecha | date:'dd-MM-yyyy'}}</i></small>
+          </td>
+          <td>
+            <strong>${{pago?.estadoPago?.monto | number:'1.0-0'}}</strong>
+          </td>
+          <td class="text-center">
+          
+            <button *ngIf="!pago.factura" class="hovered btn btn-sm btn-alt-info btn-circle"
+              (click)="subirFacturaModal(i)" container="body" ngbTooltip="Subir factura">
+              <i class="si si-cloud-upload"></i>
+            </button>
+            <button *ngIf="pago.factura" class="hovered btn btn-sm btn-alt-success btn-circle"
+              (click)="verFactura(pago.factura)" placement="left" container="body" [ngbTooltip]="facturaTip">
+              <i class="fa fa-eye"></i>
+            </button>
+            <ng-template #facturaTip>
+              <div class="text-left">
+                fecha: <b>{{pago.factura.fecha | date:'dd-MM-yyyy'}}</b><br>
+                monto: $<b>{{pago.factura.monto | number:'1.0-0'}}</b>
+              </div>
+            </ng-template>
+            <button ngbTooltip="Subir factura"
+              class="no-hovered btn btn-sm btn-circle btn-alt-{{pago.factura?'success':'info disabled'}}"
+              >
+              <i *ngIf="!pago.factura" class="si si-cloud-upload"></i>
+              <i *ngIf="pago.factura" class="fa fa-check"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div *ngIf=" !proyecto?.pagos?.length" class="text-center my-50">
+      <i class="fa fa-dollar fa-3x text-body-bg-dark"></i>
+    </div>
+
+  </ng-template>
+
+</card-template>
+
+
+
+

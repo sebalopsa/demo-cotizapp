@@ -1,0 +1,39 @@
+<a class="block block-rounded block-link-pop block-link-shadow borde-card altura-fija {{trabajador.inactivo?'bg-body-light':''}}" 
+  routerLink="/trabajadores/lista/{{trabajador.id}}">
+  <div class="block-content block-content-full clearfix">
+    <div class="text-right float-right mt-10" style="width: 60%">
+      <div class="font-w600 mb-0">{{trabajador.apellidos}} {{trabajador.nombre}}<span *ngIf="trabajador.inactivo" class="text-danger"> [desvinculado]</span></div>
+      <div class="font-size-sm text-primary">{{trabajador.rut | rut}}</div>
+      <div class="font-size-sm text-muted">{{trabajador.cargo}}</div>
+      <div class="mt-3">
+        <span *ngIf="documentosPorVencer?.length>0" class="badge badge-pill badge-warning" [ngbTooltip]="porVencerTip"
+          placement="bottom" container="body">Documentos por vencer</span>
+        <span *ngIf="documentosVencidos?.length>0" class="badge badge-pill badge-danger" [ngbTooltip]="vencidosTip"
+          placement="bottom" container="body">Documentos vencidos</span>
+      </div>
+
+      <ng-template #porVencerTip>
+        <table class="table table-sm table-borderless text-white text-left">
+          <tr *ngFor="let doc of documentosPorVencer">
+            <td>&#5867;</td>
+            <td>{{doc.nombre}}</td>
+            <td><i>vence en {{doc.dias}} día{{doc.dias>1?'s':''}}</i></td>
+          </tr>
+        </table>
+      </ng-template>
+      <ng-template #vencidosTip>
+        <table class="table table-sm table-borderless text-white">
+          <tr *ngFor="let doc of documentosVencidos">
+            <td>&#5867;</td>
+            <td>{{doc.nombre}}</td>
+            <td><i>venció hace {{doc.dias}} día{{doc.dias>1?'s':''}}</i></td>
+          </tr>
+        </table>
+      </ng-template>
+
+    </div>
+    <div class="float-left">
+      <img class="img-avatar" src="{{trabajador?.fotoUrl || defaultImg}}" alt="">
+    </div>
+  </div>
+</a>

@@ -1,0 +1,21 @@
+.clear {
+  opacity: 0;
+  cursor: pointer;
+  margin: auto 10px auto auto;
+  transition: 0.2s;
+}
+.clickable {
+  cursor: pointer;
+  background-color: white;
+}
+.input-group {
+  background-color: white;
+  border: 1px solid gainsboro;
+  border-radius: 0.2rem;
+  input {
+    border: none;
+  }
+  &:hover .clear {
+    opacity: 1;
+  }
+}

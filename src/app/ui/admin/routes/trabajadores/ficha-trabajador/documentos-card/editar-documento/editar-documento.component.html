@@ -1,0 +1,76 @@
+<div class="modal-header">
+  <h4 class="modal-title text-white" id="modal-basic-title">Editar Documento</h4>
+  <a class="close" (click)="cerrar()">
+    <span class="text-white">&times;</span>
+  </a>
+</div>
+<div class="modal-body">
+
+
+  <div class="row mx-20">
+    <div class="col-12">
+      <div class="row align-items-center pb-2 pr-30">
+        <div class="col-2 px-0">
+          <div class="item item-circle bg-info-light mx-auto mb-10">
+            <i class="fa fa-file-{{tipo()}}o text-info"></i>
+          </div>
+          <div class="text-center">
+            <strong class="text-secondary">{{doc.peso || 0 | filesize}}</strong>
+          </div>
+        </div>
+        <div class="col-10 px-0 pl-10">
+          <div class="row mb-1" [formGroup]="form">
+            <div class="col-6 form-group m-0 pr-10">
+              <label class="monospace text-uppercase mb-5">Nombre</label>
+              <input type="text"
+                class="form-control form-control-sm {{nombre.touched && nombre.invalid ? 'is-invalid':''}} {{nombre.touched && nombre.valid ? 'is-valid':''}}"
+                formControlName="nombre" placeholder="Nombre del documento">
+            </div>
+            <div class="col-6 form-group m-0 pl-10" [formGroup]="vencimiento">
+              <label class="monospace text-uppercase mb-5">¿Vence?</label>
+              <div class="btn-group btn-group-toggle btn-group-sm ml-5" ngbRadioGroup name="radioBasic"
+                formControlName="activo">
+                <label ngbButtonLabel class="btn btn-outline-info btn-radio">
+                  <input ngbButton type="radio" [value]="true">Si
+                </label>
+                <label ngbButtonLabel class="btn btn-outline-info btn-radio">
+                  <input ngbButton type="radio" [value]="false">No
+                </label>
+              </div>
+              <div *ngIf="activo.value" class="form-group">
+                <div class="input-group">
+                  <input type="text" placeholder="aaaa-mm-dd" class=" form-control form-control-sm {{fechaObj.touched && fechaObj.invalid ? 'is-invalid':''}}
+                                {{fechaObj.touched && fechaObj.valid ? 'is-valid':''}}" formControlName="fechaObj"
+                    ngbDatepicker #d="ngbDatepicker">
+                  <div class="input-group-append">
+                    <button class="btn btn-sm btn-outline-primary" (click)="d.toggle()" type="button"><i
+                        class="fa fa-calendar"></i></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <strong class="text-gray">{{doc?.fileName}}</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+</div>
+<div class="modal-footer">
+  <span *ngIf="form.invalid && (form.touched)" class="invalid">
+    Debe completar todos los campos con datos válidos.
+  </span>
+  <button type="button" [disabled]="loading || form.invalid || form.pristine" class="btn btn-alt-{{loading?'success':'info'}}"
+    (click)="guardar()">
+    <i *ngIf="!loading" class="si si-cloud-upload mr-5"></i>
+    <i *ngIf="loading" class="fa fa-circle-o-notch fa-spin mr-5"></i>
+    {{loading?'Editando':'Editar'}}
+  </button>
+</div>

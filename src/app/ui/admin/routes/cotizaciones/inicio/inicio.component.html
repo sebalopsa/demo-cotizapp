@@ -1,0 +1,8 @@
+<div class="content js-appear-enabled animated fadeIn">
+  <nav class="breadcrumb bg-white push">
+    <a class="breadcrumb-item text-uppercase" routerLink="/cotizaciones">Cotizaciones</a>
+    <span class="breadcrumb-item active">Inicio</span>
+  </nav>
+  <vista-general-section [cotizaciones]="cotizaciones$ | async" [count]="count$ | async" (onNuevaClicked)="nuevaCotizacion()"></vista-general-section>
+  <cotizaciones-section [cotizaciones]="cotizaciones$ | async" ></cotizaciones-section>
+</div>

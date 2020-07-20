@@ -1,0 +1,29 @@
+<div class="row align-items-start mb-20">
+  <div class="col-12" *ngIf="trabajadores?.length">
+    <search class="ml-auto" [(searchText)]="filter"></search>
+  </div>
+</div>
+
+<div class="row justify-content-center">
+  <div class="col">
+    <div>
+      <div class="table-responsive">
+        <table class="table table-sm table-borderless table-vcenter">
+          <tbody>
+            <tr class="border-bottom" *ngFor="let t of (trabajadores | filter:filter); let i = index">
+
+              <td class="font-w600" style="max-width:120px">{{t.apellidos | titlecase}} {{t.nombre | titlecase}}</td>
+              <td>{{t.rut | rut}}</td>
+
+              <td class="text-center">
+                <button type="button" class="btn-hover btn btn-sm btn-secondary" (click)="verFicha(t.rut)">
+                  <i class="fa fa-arrow-right" ngbTooltip="ver ficha del trabajador" container="body"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

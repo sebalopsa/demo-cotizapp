@@ -1,0 +1,8 @@
+.altura-fija {
+    height: 12em;
+    margin: 0
+}
+
+img{
+    object-fit: cover;
+}

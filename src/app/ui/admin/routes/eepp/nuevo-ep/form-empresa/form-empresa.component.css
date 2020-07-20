@@ -1,0 +1,40 @@
+.bordered{
+    border: 1px solid gainsboro;
+    border-radius: 3px;
+}
+
+select{
+    background-color: rgb(245, 245, 245) !important;
+    border: 0px solid rgb(179, 179, 179) !important;
+    border-radius: 4px !important;
+    cursor: pointer;
+    height: 2em;
+    padding-top: 3px !important;
+    padding-bottom: 3px !important;
+    transition: 0.3s;
+
+}
+select:hover{
+    border: 1px solid rgb(179, 179, 179) !important;
+}
+select:focus{
+    border: 1px solid rgb(140, 197, 223) !important;
+    background-color: rgb(255, 255, 255) !important;
+    transition: 0.3s;
+}
+
+.table{
+    font-size: 13px;
+}
+td{
+    padding: 5px;
+}
+.highlight{
+    margin: 20px;
+    padding: 20px;
+}
+
+.highlight:hover, tr:hover{
+    background-color: rgba(119, 187, 209, 0.17) !important;
+    border-radius: 5px !important;
+}

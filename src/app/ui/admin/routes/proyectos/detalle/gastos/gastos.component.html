@@ -1,0 +1,62 @@
+<card-template cardTitle="gastos" noPadding>
+  <ng-template #btnTemplate>
+    <button type="button" class="card-action btn-block-option" (click)="nuevoGasto()"  ngbTooltip="Registrar gasto">
+      <i class="fa fa-plus text-white"></i>
+    </button>
+  </ng-template>
+
+  <ng-template #componentTemplate>
+
+    <table *ngIf="proyecto?.gastos && proyecto?.gastos?.length!=0" class="table table-hover table-sm table-vcenter">
+      <thead>
+        <tr class="text-muted font-size-sm text-center">
+          <th scope="col">Item</th>
+          <th scope="col">Categoría</th>
+          <th scope="col">Monto</th>
+          <th scope="col">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="text-muted text-center" style="height:3em;font-size: 14px; max-width: 100%"
+          *ngFor="let gasto of proyecto?.gastos; let i = index">
+          <td class="text-left pl-10">
+            {{gasto?.item}}</td>
+          <td>{{gasto?.categoria}}</td>
+          <td><strong>${{(gasto?.monto).toLocaleString()}}</strong></td>
+          <td>
+            <div class="botones-row">
+              <button [disabled]="!gasto.url" type="button" class="btn btn-sm btn-circle btn-alt-info mr-2"
+                (click)="descargar(gasto.url)" ngbTooltip="Abrir gasto" container="body"> <i
+                  class="fa fa-external-link"></i>
+              </button>
+
+              <button class="btn btn-sm btn-circle btn-alt-danger" [ngbPopover]="popContent" [popoverTitle]="popTitle"
+                container="body" [autoClose]="false" triggers="manual" #p="ngbPopover" (click)="p.open()">
+                <i placement="bottom" ngbTooltip="Eliminar gasto" container="body" class="fa fa-trash"></i>
+              </button>
+              <ng-template #popContent>
+                <div class="text-center">
+                  <button type="button" class="btn btn-sm btn-outline-danger mr-2" (click)="p.close()">
+                    No
+                  </button>
+                  <button type="button" class="btn btn-sm btn-danger" (click)="eliminar(i, gasto.url); p.close()">
+                    Sí
+                  </button>
+                </div>
+              </ng-template>
+              <ng-template #popTitle>¿Eliminar gasto?</ng-template>
+            </div>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+
+    <div *ngIf="!proyecto?.gastos || proyecto?.gastos?.length==0" class="text-center my-50">
+      <i class="fa fa-money fa-3x text-body-bg-dark"></i>
+    </div>
+
+
+  </ng-template>
+
+</card-template>

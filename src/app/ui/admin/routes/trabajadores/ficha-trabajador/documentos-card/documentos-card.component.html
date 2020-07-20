@@ -1,0 +1,76 @@
+<div class="block block-rounded block-bordered">
+  <div class="block-header bg-body-light">
+    <h6 class="m-0 text-uppercase text-secondary">Documentos</h6>
+    <div class="block-options">
+      <a class="card-action btn-block-option" (click)="modalAgregar()">
+        <i class="fa fa-plus text-primary"></i>
+      </a>
+    </div>
+  </div>
+  <div class="block-content pt-0 px-0">
+    <div class="row justify-content-center">
+      <div class="col-12">
+        <table class="table table-hover table-sm">
+          <tbody>
+            <tr class="text-muted text-center" style="height:3em;font-size: 14px;"
+              *ngFor="let doc of trabajador?.documentos; let i = index" (mouseenter)="hovered = i"
+              (mouseleave)="hovered = null">
+              <td class="text-left pl-20" style="max-width: 7em">
+                <div class="mr-2 d-inline">
+                  <span *ngIf="diasRestantes(doc) > 0 && diasRestantes(doc) <= 30" class="text-warning"><i
+                      class="fa fa-exclamation-triangle"></i></span>
+                  <span *ngIf="diasRestantes(doc) <= 0" class="text-danger"><i class="fa fa-times-circle"></i></span>
+                </div>
+                <strong class="text-muted">{{doc?.nombre}}</strong>
+              </td>
+              <td class="small" style="min-width: 80px;">
+                <i>{{doc?.vencimiento?.activo?'válido hasta ': 'no vence'}}</i>
+                <br>
+                <i *ngIf="doc.vencimiento.activo">{{doc?.vencimiento?.fechaEpoch | date:'dd-MM-yyyy'}}</i>
+              </td>
+              <td>
+                {{doc?.tipo?.split('/').slice(1).join('/')}}
+              </td>
+              <td class="small" style="min-width: 60px;">
+                {{doc?.peso || 0 | filesize}}
+              </td>
+              <td style="width:28%;">
+                <div *ngIf="hovered == i">
+                  <button [disabled]="!doc.url" type="button" class="btn btn-sm btn-circle btn-alt-info mr-1"
+                    (click)="descargar(doc.url)" placement="bottom" ngbTooltip="Abrir documento"> <i
+                      class="fa fa-external-link"></i>
+                  </button>
+                  <button type="button" class="btn btn-sm btn-circle btn-alt-secondary mr-1"
+                    (click)="modalEditar(doc, i)"> <i placement="bottom" ngbTooltip="Editar documento"
+                      class="fa fa-edit"></i>
+                  </button>
+
+                  <button [disabled]="subiendo || testing" class="btn btn-sm btn-circle btn-alt-danger" placement="bottom"
+                    ngbTooltip="Eliminar documento" [ngbPopover]="popContent" [popoverTitle]="popTitle"
+                    [autoClose]="false" triggers="manual" #p="ngbPopover" (click)="p.open()">
+                    <i class="fa fa-trash"></i>
+                  </button>
+                  <ng-template #popContent>
+                    <div class="text-center">
+                      <button type="button" class="btn btn-sm btn-outline-danger mr-2" (click)="p.close()">
+                        No
+                      </button>
+                      <button type="button" class="btn btn-sm btn-danger" (click)="eliminar(i, doc.url);p.close()">
+                        Si
+                      </button>
+                    </div>
+                  </ng-template>
+                  <ng-template #popTitle>¿Eliminar documento?</ng-template>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div *ngIf=" !trabajador?.documentos?.length" class="text-center my-50">
+          <i class="fa fa-files-o fa-3x text-body-bg-dark"></i>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

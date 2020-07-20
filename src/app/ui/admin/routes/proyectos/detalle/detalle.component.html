@@ -1,0 +1,62 @@
+<div class="content">
+  <div class="block block-bordered-2">
+    <div class="block-content pb-50">
+      <div class="row mb-20">
+        <div class="col d-flex justify-content-between align-items-center">
+          <button type="button" class="btn btn-md btn-circle btn-noborder btn-outline-secondary mr-5 mb-5"
+            (click)="back()">
+            <i class="fa fa-arrow-left"></i>
+          </button>
+          <app-editable-text [value]="proyecto?.nombre" size='lg' (save)=editarNombre($event)></app-editable-text>
+          <div ngbDropdown>
+            <a class="btn btn-alt-secondary btn-rounded" ngbDropdownToggle> opciones
+            </a>
+            <div ngbDropdownMenu aria-labelledby="estadoDropdown">
+              <!-- <button ngbDropdownItem (click)="finalizar()"> <i
+                  class="fa fa-flag-checkered mr-10"></i>Finalizar</button>
+              <button ngbDropdownItem (click)="cancelar()"><i class="fa fa-ban mr-10"></i>Cancelar</button> -->
+              <button ngbDropdownItem (click)="openEliminarConfirm()"><i class="fa fa-trash mr-10"></i>Eliminar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-4 pl-0">
+          <informacion></informacion>
+        </div>
+        <div class="col-4 d-flex flex-column justify-content-around">
+          <instalaciones class="mb-10" material="termofusion">
+          </instalaciones>
+          <instalaciones material="geotextil">
+          </instalaciones>
+        </div>
+        <div class="col-4 pr-0 d-flex flex-column justify-content-around">
+          <instalaciones class="mb-10" material="hdpe">
+          </instalaciones>
+          <instalaciones material="lldpe">
+          </instalaciones>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12 px-0">
+          <actividad [proyecto]="proyecto"></actividad>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-4 pl-0">
+          <documentos [proyecto]="proyecto"></documentos>
+
+        </div>
+        <div class="col-4">
+          <gastos [proyecto]="proyecto"></gastos>
+        </div>
+        <div class="col-4 pr-0">
+          <pagos [proyecto]="proyecto"></pagos>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

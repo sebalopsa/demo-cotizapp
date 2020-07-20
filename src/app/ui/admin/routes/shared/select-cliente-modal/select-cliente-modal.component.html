@@ -1,0 +1,118 @@
+<div *ngIf="opened" class="modal fade {{opened?'show display-block':'display-none'}}">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="block block-themed block-rounded block-transparent mb-0 {{(loading$|async)?'block-mode-loading':''}}">
+        <div class="block-header bg-muted">
+          <h3 class="block-title">Seleccione cliente</h3>
+          <div class="block-options">
+            <search [(searchText)]="filter"></search>
+          </div>
+        </div>
+        <div class="block-content  p-20" #tableScroll>
+          <table class="table table-hover table-bordered table-sm">
+            <thead>
+              <tr>
+                <th class="text-center">Nombre</th>
+                <th class="text-center">RUT</th>
+                <th class="text-center">Dirección</th>
+                <th class="text-center">Teléfono</th>
+                <th class="text-center">Email</th>
+                <th class="text-center">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngIf="showNuevoClienteRow" [formGroup]="clienteForm">
+                <td class="font-w600 text-muted text-uppercase">
+                  <input type="text" class="form-control {{clienteNombreControl.invalid && clienteNombreControl.touched?'is-invalid':''}}" formControlName="nombre" placeholder="Nombre" style="width: 90%">
+                </td>
+                <td>
+                  <input type="text" formControlName="rut" placeholder="Rut" style="width: 90%">
+                </td>
+                <td>
+                  <textarea formControlName="direccion" placeholder="Dirección" style="width: 90%"></textarea>
+                </td>
+                <td>
+                  <input type="text" formControlName="telefono" placeholder="Teléfono" style="width: 90%">
+                </td>
+                <td>
+                  <input type="text" formControlName="email" placeholder="Email" style="width: 90%">
+                </td>
+                <td class="text-center">
+                  <button type="button" class="btn btn-sm btn-circle btn-alt-secondary mr-5"
+                    (click)="descartarCambios()">
+                    <i class="fa fa-times"></i>
+                  </button>
+                  <button [disabled]="clienteForm.invalid || clienteForm.pristine" type="button"
+                    class="btn btn-sm btn-circle btn-alt-success mr-5" (click)="guardarCambios()">
+                    <i class="fa fa-check"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr *ngFor="let cliente of clientes$ | async | filter:filter" [formGroup]="clienteForm">
+                <ng-template [ngIf]="cliente.id != editId" [ngIfElse]="formRow">
+                  <td (click)="seleccionar(cliente)" style="cursor: pointer; font-size: 12px"
+                    class="font-w600 text-muted text-uppercase">
+                    {{cliente.nombre}}</td>
+                  <td (click)="seleccionar(cliente)" style="cursor: pointer; font-size: 12px">{{cliente.rut | rut}}
+                  </td>
+                  <td (click)="seleccionar(cliente)" style="cursor: pointer; font-size: 12px">
+                    <p>{{cliente.direccion}}</p>
+                  </td>
+                  <td (click)="seleccionar(cliente)" style="cursor: pointer; font-size: 12px">{{cliente.telefono}}
+                  </td>
+                  <td (click)="seleccionar(cliente)" style="cursor: pointer; font-size: 12px">{{cliente.email}}</td>
+                  <td class="text-center">
+                    <button [disabled]="isEditing" type="button" class="btn btn-sm btn-circle btn-alt-secondary mr-5"
+                      (click)="editar(cliente)">
+                      <i class="fa fa-pencil"></i>
+                    </button>
+                    <button [disabled]="isEditing" type="button" class="btn btn-sm btn-circle btn-alt-danger mr-5"
+                      (click)="eliminar(cliente.id)">
+                      <i class="fa fa-trash"></i>
+                    </button>
+                  </td>
+                </ng-template>
+                <ng-template #formRow>
+                  <td class="font-w600 text-muted text-uppercase">
+                    <input type="text" class="form-control {{clienteNombreControl.invalid && clienteNombreControl.touched?'is-invalid':''}}" formControlName="nombre" placeholder="Nombre" style="width: 90%">
+                  </td>
+                  <td>
+                    <input type="text" formControlName="rut" placeholder="Rut" style="width: 90%">
+                  </td>
+                  <td>
+                    <textarea formControlName="direccion" placeholder="Dirección" style="width: 90%"></textarea>
+                  </td>
+                  <td>
+                    <input type="text" formControlName="telefono" placeholder="Teléfono" style="width: 90%">
+                  </td>
+                  <td>
+                    <input type="text" formControlName="email" placeholder="Email" style="width: 90%">
+                  </td>
+                  <td class="text-center">
+                    <button type="button" class="btn btn-sm btn-circle btn-alt-secondary mr-5"
+                      (click)="descartarCambios()">
+                      <i class="fa fa-times"></i>
+                    </button>
+                    <button [disabled]="clienteForm.invalid || clienteForm.pristine" type="button"
+                      class="btn btn-sm btn-circle btn-alt-success mr-5" (click)="guardarCambios()">
+                      <i class="fa fa-check"></i>
+                    </button>
+                  </td>
+                </ng-template>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer" style="justify-content:space-between">
+        <button [disabled]="isEditing" type="button" class="btn btn-alt-success" (click)="nuevo()">
+          Nuevo <i class="fa fa-plus"></i>
+        </button>
+        <span>
+          {{(clientes$ | async | filter:filter).length}} clientes
+        </span>
+        <button type="button" class="btn btn-alt-secondary" (click)="cerrar()">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>

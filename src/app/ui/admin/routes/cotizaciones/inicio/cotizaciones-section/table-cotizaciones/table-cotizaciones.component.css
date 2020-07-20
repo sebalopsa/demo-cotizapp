@@ -1,0 +1,25 @@
+/* tr:hover {
+    background-color: rgb(225, 237, 241) !important;
+} */
+
+tr {
+    border-bottom: 1px solid rgb(245, 245, 245);
+}
+
+tr.nula {
+    background-color: rgb(243, 243, 243);
+    color: rgb(187, 187, 187) !important;
+}
+
+tbody > tr:hover {
+    background-color: #fff;
+    box-shadow: inset 1px 0 0 #dadce0, inset -1px 0 0 #dadce0, 0 1px 2px 0 rgba(60, 64, 67, 0.3),
+        0 1px 3px 1px rgba(60, 64, 67, 0.15);
+}
+tbody > tr:hover > .action {
+    opacity: 1;
+}
+tbody > tr:hover > .td {
+    border-top: 1px solid #dadce0;
+    border-bottom: 1px solid #dadce0;
+}

@@ -1,0 +1,11 @@
+<h4 class="text-center text-primary-dark my-5">ESTADO DE PAGO</h4>
+
+  <div class="row my-20 highlight">
+    <div class="col-lg-4" [formGroup]="parentForm">
+      <label for="fecha" style="font-size: 13px;">Fecha de emisión</label>
+    </div>
+    <div class="col-lg-8" [formGroup]="parentForm">
+      <input type="date" class="form-control {{fechaControl.invalid && fechaControl.touched?'is-invalid':''}}"
+        id="fecha" name="fecha" [formControlName]="'fechaStr'">
+    </div>
+  </div>

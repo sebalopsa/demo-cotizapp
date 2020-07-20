@@ -1,0 +1,15 @@
+<div class="modal-header bg-white border-bottom">
+    <h4 class="modal-title">{{modalTitle}}</h4>
+    <a type="button" class="close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+    </a>
+</div>
+
+<div class="modal-body scrollable d-flex flex-column {{noPadding?'p-0':''}}" [ngStyle]="{'height.vh': height}">
+    <ng-container *ngTemplateOutlet="body">
+    </ng-container>
+</div>
+<div class="modal-footer" ngbAutofocus>
+    <ng-container *ngTemplateOutlet="footer">
+    </ng-container>
+</div>

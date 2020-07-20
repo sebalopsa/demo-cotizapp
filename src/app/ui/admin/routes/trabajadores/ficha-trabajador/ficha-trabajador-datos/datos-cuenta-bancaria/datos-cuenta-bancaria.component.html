@@ -1,0 +1,72 @@
+<div class="block-content block-content-full">
+  <h2 class="content-heading text-black pt-20">Cuenta Bancaria</h2>
+
+  <table class="table table-sm table-borderless table-vcenter table-hover">
+
+
+    <tbody *ngIf="!editing">
+
+      <tr>
+        <th class="text-left" scope="row"><label>Banco: </label></th>
+        <td><span class="datos-trabajador">
+            {{trabajador?.cuenta?.banco}}</span></td>
+
+      </tr>
+      <tr>
+        <th class="text-left" scope="row"><label>Tipo: </label></th>
+        <td><span class="datos-trabajador">
+            {{trabajador?.cuenta?.tipo}}</span></td>
+
+      </tr>
+      <tr>
+        <th class="text-left" scope="row"><label>Número: </label></th>
+        <td><span class="datos-trabajador">
+            {{trabajador?.cuenta?.numero}}</span></td>
+
+      </tr>
+
+
+
+
+    </tbody>
+
+    <tbody *ngIf="editing" [formGroup]="trabajadorForm.get('cuenta')">
+
+        <tr>
+          <th class="text-left" scope="row"><label>Banco: </label></th>
+          <td>
+              <select class="form-control form-control-sm" formControlName="banco">
+
+                  <option value={{null}}>--Seleccione--</option>
+                  <option *ngFor="let banco of bancosOrdenados" value="{{toUpperCase(banco)}}">{{toUpperCase(banco)}}</option>
+          
+                </select>
+          </td>
+  
+        </tr>
+        <tr>
+          <th class="text-left" scope="row"><label>Tipo: </label></th>
+          <td>
+              <select class="form-control form-control-sm" formControlName="tipo">
+                  <option value={{null}}>--Seleccione--</option>
+                  <option *ngFor="let tipo of tiposCuenta" value="{{tipo}}">{{tipo}}</option>
+                </select>
+          </td>
+  
+        </tr>
+        <tr>
+          <th class="text-left" scope="row"><label>Número: </label></th>
+          <td>
+              <input type="text" class="form-control form-control-sm" formControlName="numero" placeholder="Número de Cuenta">
+          </td>
+  
+        </tr>
+  
+  
+  
+  
+      </tbody>
+  
+    
+  </table>
+</div>

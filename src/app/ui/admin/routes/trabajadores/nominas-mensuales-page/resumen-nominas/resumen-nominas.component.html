@@ -1,0 +1,17 @@
+<div class="content-heading">
+    RESUMEN
+</div>
+<div class="row gutters-tiny">
+    <div class="col-md-6 col-xl-3">
+        <stat-card [stat]="nominas?.length || 0" [subtext]="'nominas'" [icon]="'fa fa-table'"></stat-card>
+    </div>
+    <div class="col-md-6 col-xl-3">
+        <stat-card [stat]="(abreviarMes(last?.monthStr) || 'mes')+' '+(last?.year || 'año')" [subtext]="'último registro'" [icon]="'fa fa-calendar-check-o'"></stat-card>
+    </div>
+    <div class="col-md-6 col-xl-3">
+        <stat-card [stat]="last?.resumen?.registros || 0" [subtext]="'último conteo'" [icon]="'fa fa-list-ol'"></stat-card>
+    </div>
+    <div class="col-md-6 col-xl-3">
+        <stat-card [stat]="'$'+(last?.resumen?.total || 0 | number:'1.0-0')" [subtext]="'último pago'" [icon]="'fa fa-dollar'"></stat-card>
+    </div>
+</div>

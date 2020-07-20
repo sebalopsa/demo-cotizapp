@@ -1,0 +1,12 @@
+<div class="block block-rounded block-bordered {{noPadding?'p-0':''}} {{gray?'bg-gray-light':''}}" (mouseover)="hovered=true"
+    (mouseleave)="hovered=false" [class.border-primary]="hovered" [style.height]="show?'100%':'4rem'">
+    <div class="block-header d-flex bg-earth-dark" style="height: 4rem;cursor: pointer;" (click)="show=!show">
+        <h6 class="m-0 text-uppercase text-white">{{cardTitle}}</h6>
+        <div *ngIf="hovered" class="block-options" (click)="$event.stopPropagation()">
+            <ng-container *ngTemplateOutlet="btnTemplateRef"></ng-container>
+        </div>
+    </div>
+    <div class="block-content animated fadeIn py-0 px-0 {{show?'show':''}}" style="min-height: 150px">
+        <ng-container *ngTemplateOutlet="templateRef"></ng-container>
+    </div>
+</div>

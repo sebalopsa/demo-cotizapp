@@ -1,0 +1,57 @@
+<div class="row archivo">
+  <div class="col-12 px-0 pb-0">
+    <a class="btn text-danger remove-item float-right pr-20" (click)="srv.quitarDocumento(index)">
+      <i class="fa fa-trash"></i>
+    </a>
+  </div>
+  <div class="col-12">
+    <div class="row align-items-center pb-2 pr-50">
+      <div class="col-2 px-0">
+        <div class="item item-circle bg-info-light mx-auto mb-10">
+          <i class="fa fa-file-{{tipo()}}o text-info"></i>
+        </div>
+        <div class="text-center">
+          <strong class="text-secondary">{{documento?.value?.peso | filesize}}</strong>
+        </div>
+      </div>
+      <div class="col-10 px-0 pl-10">
+        <div class="row mb-1" [formGroup]="documento">
+          <div class="col-6 form-group m-0 pr-0">
+            <label class="monospace text-uppercase mb-5">Nombre</label>
+            <input type="text"
+              class="form-control form-control-sm {{nombre.touched && nombre.invalid ? 'is-invalid':''}} {{nombre.touched && nombre.valid ? 'is-valid':''}}"
+              formControlName="nombre" placeholder="Nombre del documento">
+          </div>
+          <div class="col-6 form-group m-0 pl-5" [formGroup]="vencimiento">
+            <label class="monospace text-uppercase mb-5">¿Vence?</label>
+            <div class="btn-group btn-group-toggle btn-group-sm ml-5" ngbRadioGroup name="radioBasic"
+              formControlName="activo">
+              <label ngbButtonLabel class="btn btn-outline-info btn-radio">
+                <input ngbButton type="radio" [value]="true">Si
+              </label>
+              <label ngbButtonLabel class="btn btn-outline-info btn-radio">
+                <input ngbButton type="radio" [value]="false">No
+              </label>
+            </div>
+            <div *ngIf="activo.value" class="form-group">
+              <div class="input-group">
+                <input type="text" placeholder="aaaa-mm-dd" class=" form-control form-control-sm {{fechaObj.touched && fechaObj.invalid ? 'is-invalid':''}}
+                        {{fechaObj.touched && fechaObj.valid ? 'is-valid':''}}" formControlName="fechaObj" ngbDatepicker
+                  #d="ngbDatepicker" container="body">
+                <div class="input-group-append">
+                  <button class="btn btn-sm btn-outline-primary" (click)="d.toggle()" type="button"><i
+                      class="fa fa-calendar"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <strong class="text-gray">{{documento?.value?.fileName}}</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

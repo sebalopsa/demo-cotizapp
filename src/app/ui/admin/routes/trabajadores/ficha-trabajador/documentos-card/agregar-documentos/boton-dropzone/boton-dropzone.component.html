@@ -1,0 +1,13 @@
+<div class="dropzone text-center py-50 px-20 {{drag?'dropzone-drag':''}} {{loading?'loading':''}}"
+  (processing)="loading=true;error=false" (reset)="loading=false" (dragenter)="drag=true" (dragover)="drag=true"
+  (dragleave)="drag=false" (drop)="drag=false" [dropzone]="config" (error)="onUploadError()"
+  (success)="onUploadSuccess($event)">
+  <p class="mx-10 text-secondary"><strong>Arrastre sus archivos
+      aquí o haga click para seleccionar</strong></p>
+  <i *ngIf="!loading && !error" class="si si-cloud-upload fa-5x text-body-bg-dark"></i>
+  <i *ngIf="loading" class="fa fa-cog fa-5x text-body-bg-dark fa-spin"></i>
+  <div *ngIf="error">
+    <i class="fa fa-exclamation-circle fa-5x text-body-bg-dark"></i>
+    <p class="small text-secondary">Hubo un error en la carga del archivo</p>
+  </div>
+</div>

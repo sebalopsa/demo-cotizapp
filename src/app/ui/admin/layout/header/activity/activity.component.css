@@ -1,0 +1,12 @@
+.btn-dual-secondary.focus,
+.btn-dual-secondary:focus,
+.btn-dual-secondary:hover {
+ color:#fff;
+ background-color:#177a665e !important;
+ border-color:#177a66 !important;
+ box-shadow:none
+}
+
+li:hover{
+    background-color: #f6f6f6
+}

@@ -1,0 +1,22 @@
+.scrollable {
+    overflow-y: auto;
+    overflow-x: hidden!important;
+}
+
+.modal-header {
+    background-color: #212529;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+}
+
+.pointer{
+    cursor: pointer;
+}
+
+.seleccionado{
+    background-color: #B5E2F7 !important
+}
+
+.table th, .table td {
+    border-top: initial
+}

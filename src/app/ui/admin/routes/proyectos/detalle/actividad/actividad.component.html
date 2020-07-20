@@ -1,0 +1,57 @@
+<card-template cardTitle="actividad" noPadding>
+  <ng-template #btnTemplate>
+    <button type="button" class="card-action btn-block-option" (click)="open(content)"
+      ngbTooltip="Asignar trabajadores">
+      <i class="fa fa-plus text-white"></i>
+    </button>
+  </ng-template>
+
+  <ng-template #componentTemplate>
+    <div class="row m-3">
+      <div class="col-7">
+        <app-calendar></app-calendar>
+      </div>
+      <div class="col-5">
+        <app-lista-trabajadores></app-lista-trabajadores>
+      </div>
+    </div>
+  </ng-template>
+
+
+
+  <ng-template #content let-modal>
+
+    <div class="modal-body">
+      <a class="float-right" (click)="modal.close()"><i class="fa fa-times"></i></a>
+      <div class="row justify-content-center">
+        <div class="col text-center">
+          <h5 class="mb-4" ngbAutofocus>Seleccione el tipo de movimiento</h5>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-4 text-center px-0">
+          <button type="button" class="btn btn-alt-info" style="height: 90px; width: 140px"
+            (click)="modal.close(); asignarTrabajadoresModal(2)">
+            <i class="fa fa-3x fa-sign-in mb-2"></i> <br>
+            Solo Ingreso
+          </button>
+        </div>
+        <div class="col-4 text-center px-0">
+          <button type="button" class="btn btn-alt-info" style="height: 90px; width: 140px"
+            (click)="modal.close(); asignarTrabajadoresModal(1)">
+            <i class="fa fa-3x fa-sign-in mb-2"></i>&nbsp;&nbsp;<i class="fa fa-3x fa-sign-out mb-2"></i> <br>
+            Ingreso y Egreso
+          </button>
+        </div>
+        <div class="col-4 text-center px-0">
+          <button type="button" class="btn btn-alt-info" style="height: 90px; width: 140px"
+            (click)="modal.close(); asignarTrabajadoresModal(3)">
+            <i class="fa fa-3x fa-sign-out mb-2"></i> <br>
+            Solo Egreso
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+  </ng-template>

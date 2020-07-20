@@ -1,0 +1,13 @@
+.modal-header{
+    background-color: #212529;
+}
+
+.modal-footer{
+    border-top: none!important;
+}
+
+.scrollable {
+    overflow-y: scroll;
+    overflow-x: hidden!important;
+    height: 100%
+}

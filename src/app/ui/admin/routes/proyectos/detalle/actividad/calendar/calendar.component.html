@@ -1,0 +1,10 @@
+<div class="form-group row ml-5 mb-50">
+    <label for="monthSelect" class="col-sm-3 col-form-label">Seleccione mes</label>
+    <select name="monthSelect" class="custom-select col-4" (change)="changeMonth($event)">
+        <option *ngFor="let month of months" [ngValue]="month" [selected]="isThisMonth(month)">{{formatMonth(month)}}
+        </option>
+    </select>
+</div>
+
+<div echarts (chartClick)="onClick($event)" [options]="options" style="height: 50vh"
+    [merge]="mergeOptions"></div>

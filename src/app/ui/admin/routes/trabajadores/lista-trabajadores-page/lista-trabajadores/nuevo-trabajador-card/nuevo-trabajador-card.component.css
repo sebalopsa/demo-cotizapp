@@ -1,0 +1,13 @@
+.altura-fija {
+    height: 12em;
+    margin: 0
+}
+
+.text-muted-light {
+    color:#6c757d6c!important;
+    transition: color 200ms
+}
+
+.text-success {
+    transition: color 500ms
+}

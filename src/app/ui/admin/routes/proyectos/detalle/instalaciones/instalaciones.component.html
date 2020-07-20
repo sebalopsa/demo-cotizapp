@@ -1,0 +1,14 @@
+<a class="block block-rounded block-transparent bg-image" style="border-radius: 3px; margin: 0;"
+    [style.backgroundImage]="'url(assets/img/' + material + '.jpg)'" (click)="open()">
+    <div class="block-content block-content-full bg-black-op-50" style="height: 180px">
+        <div>
+            <h1 class="display-3 text-white">{{total}} <small class="text-white">{{unidad}}</small></h1>
+            <h3 class="h4 text-white font-w700 mb-10">{{material | uppercase}}</h3>
+            <h4 class="text-white-op font-size-default mb-0">
+                <span class="mr-10">
+                    <i class="fa fa-clock-o"></i> {{ultimaEdicion}}
+                </span>
+            </h4>
+        </div>
+    </div>
+</a>

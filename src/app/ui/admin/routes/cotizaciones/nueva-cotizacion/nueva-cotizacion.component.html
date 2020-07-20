@@ -1,0 +1,57 @@
+<div class="content">
+  <nav class="breadcrumb bg-white push">
+    <a class="breadcrumb-item text-uppercase" routerLink="/cotizaciones">Cotizaciones</a>
+    <span class="breadcrumb-item active">Nueva</span>
+  </nav>
+  <form [formGroup]="cotizacionForm">
+    <div class="block block-rounded js-appear-enabled animated fadeIn {{isLoading?'block-mode-loading':''}}">
+      <div class="block-content padding">
+        <div class="row my-20">
+          <div class="col-lg-8">
+            <form-empresa [parentForm]="cotizacionForm" [sociedades]="sociedades"></form-empresa>
+          </div>
+          <div class="col-lg-4 text-right">
+            <form-fecha [parentForm]="cotizacionForm"></form-fecha>
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div class="row">
+          <div class="col-12">
+            <form-cliente [cotizacion]="cotizacionDraft"></form-cliente>
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div class="row my-20">
+          <div class="col-12">
+            <form-servicio [parentForm]="cotizacionForm"></form-servicio>
+          </div>
+        </div>
+        <div class="divider mb-20"></div>
+        <form-detalle [parentForm]="cotizacionForm" [cotizacion]="cotizacionDraft" (onAdd)="agregarFila($event)"
+          (onRemove)="quitarFila($event)"></form-detalle>
+        <div class="divider"></div>
+        <div class="row my-20">
+          <div class="col-7">
+            <form-notas [parentForm]="cotizacionForm"></form-notas>
+          </div>
+          <div class="col-4 text-right ml-auto">
+            <form-totales [parentForm]="cotizacionForm" [cotizacion]="cotizacionDraft"></form-totales>
+          </div>
+        </div>
+        <div class="divider"></div>
+      </div>
+      <div class="text-center">
+        <button [disabled]="cotizacionForm.invalid || !cotizacionDraft.cliente" type="button"
+          class="btn btn-hero btn-rounded btn-alt-info mr-5 my-30" (click)="vistaPrevia()">
+          <i class="fa fa-eye"></i> Vista previa
+        </button>
+        <button [disabled]="cotizacionForm.invalid || !cotizacionDraft.cliente" type="button"
+          class="btn btn-hero btn-rounded btn-alt-success mr-5 my-30" (click)="generar()">
+          <i class="si si-chemistry "></i> Generar
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<select-cliente-modal (onSelected)="onClienteSelected($event)"></select-cliente-modal>

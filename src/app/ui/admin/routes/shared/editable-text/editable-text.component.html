@@ -1,0 +1,6 @@
+<form style='width:100%' [formGroup]="form">
+    <input id='input' type="text" class="form-control {{size}}" [style.width]="boxWidth+'px'" formControlName="input"
+        (focusout)="onFocusOut()" (keydown.esc)="buildForm()">
+    <div id='auxDiv' class='div'></div>
+
+</form>

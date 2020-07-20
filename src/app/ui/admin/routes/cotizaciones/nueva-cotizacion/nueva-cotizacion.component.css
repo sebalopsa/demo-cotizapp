@@ -1,0 +1,12 @@
+.padding{
+    padding: 20px 60px !important;
+}
+
+.block{
+    border: 2px solid gainsboro;
+}
+
+.divider{
+    margin: 20px auto;
+    border-bottom: 2px dashed rgba(76, 140, 172, 0.24);
+}

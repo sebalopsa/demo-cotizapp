@@ -1,0 +1,50 @@
+<div class="modal-header" style="background-color: whitesmoke">
+    <h4 class="modal-title" id="modal-basic-title">Documentos por vencer</h4>
+    <a class="close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+    </a>
+</div>
+<div class="modal-body">
+    <form>
+        <div class="form-group">
+            <p>Lista de documentos que tienen menos de 1 mes para su vencimiento</p>
+            <div class="table-section">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Días rest.</th>
+                            <th scope="col">Trabajador</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let documento of documentos; index as i">
+                            <th scope="row">{{ i + 1 }}</th>
+                            <td>
+                                {{ documento.nombre }}
+                            </td>
+                            <td>
+                                <span *ngIf="diasRestantes(documento) > 7"
+                                    class="badge badge-warning">{{ diasRestantes(documento)}}</span>
+                                <span *ngIf="diasRestantes(documento) <= 7 && diasRestantes(documento) > 0"
+                                    class="badge badge-danger">{{ diasRestantes(documento)}}</span>
+                                <span *ngIf="diasRestantes(documento) <= 0" class="badge badge-danger">vencido</span>
+
+                            </td>
+                            <td>
+                                <a routerLink="/trabajadores/lista/{{documento.trabajador.rut}}" (click)="close()"
+                                    placement="bottom"
+                                    [ngbTooltip]="documento.trabajador.nombre">{{ documento.trabajador.rut | rut }}
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <a class="btn btn-outline-dark" (click)="close()">Ok</a>
+</div>

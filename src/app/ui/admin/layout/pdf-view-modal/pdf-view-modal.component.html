@@ -1,0 +1,19 @@
+<div *ngIf="opened" class="modal fade {{opened?'show display-block':'display-none'}}">
+  <div class="modal-dialog modal-xl modal-dialog-centered">
+    <div class="modal-content">
+      <div class="block block-themed block-rounded block-transparent mb-0">
+        <div class="block-header bg-muted">
+          <!-- <h3 class="block-title">Vista Previa</h3> -->
+        </div>
+        <div class="block-content  p-20">
+          <pdf-viewer [src]="pdfSrc" [original-size]="false" [autoresize]="true" [render-text]="true"
+            style="display: block;"></pdf-viewer>
+        </div>
+      </div>
+      <div class="modal-footer" style="justify-content:space-between">
+        <button type="button" class="btn btn-alt-info" (click)="download()">Descargar</button>
+        <button type="button" class="btn btn-alt-secondary" (click)="cerrar()">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>

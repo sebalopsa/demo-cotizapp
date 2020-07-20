@@ -1,0 +1,26 @@
+<div class="modal-header bg-white border-bottom">
+    <h4 class="modal-title"> {{proyecto?'Editar Proyecto':'Nuevo Proyecto'}}</h4>
+    <a type="button" class="close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+    </a>
+</div>
+<div class="modal-body">
+    <form class="row mx-3">
+        <app-input class="col-12" label="nombre" [control]="nombre"></app-input>
+        <app-input class="col-12" label="ubicación" [control]="ubicacion"></app-input>
+        <app-input class="col-6" label="contrato" [control]="contrato"></app-input>
+        <app-input class="col-6" label="cotización" type="clickable" (clicked)="openSeleccionarCotizacion()"
+            [control]="folio"></app-input>
+        <app-input class="col-6" label="fecha de inicio" type="date" [control]="inicio"></app-input>
+        <app-input class="col-6" label="fecha de término" type="date" [control]="termino" [minDate]="inicio.value"
+            [disabled]="!inicio.value">
+        </app-input>
+
+    </form>
+</div>
+<div class="modal-footer">
+    <button [disabled]="form.invalid || form.pristine || loading" type="button" class="btn btn-primary" (click)="submit()">
+        <span *ngIf="loading" class="spinner-border spinner-border-sm mr-2"></span>
+        {{proyecto?'Guardar':'Crear Proyecto'}}
+    </button>
+</div>

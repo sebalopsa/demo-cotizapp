@@ -1,0 +1,13 @@
+td, td strong {
+  text-overflow: ellipsis !important;
+  overflow: hidden !important;
+  white-space: nowrap;
+}
+
+.btn-hover {
+  visibility: hidden;
+}
+
+tr:hover .btn-hover {
+  visibility: visible;
+}

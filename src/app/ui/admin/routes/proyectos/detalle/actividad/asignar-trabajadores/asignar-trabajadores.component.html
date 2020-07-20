@@ -1,0 +1,108 @@
+<app-modal-template
+  modalTitle="{{srv.tipoTrabajo==1||srv.tipoTrabajo==2?'Asignar trabajadores':'Retirar trabajadores'}}">
+  <ng-template #modalBody>
+    <div class="col-12">
+
+      <!-- ELEGIR FECHAS -->
+      <div *ngIf="!srv.trabajadoresCargados" class="mt-100">
+        <div class="row justify-content-center mb-30">
+          <div class="col text-center">
+            <i>Seleccione la(s) fecha(s) para cargar los trabajadores disponibles.</i>
+          </div>
+        </div>
+        <div class="row justify-content-center mb-30">
+          <div class="col-6">
+            <div class="row justify-content-center">
+              <div *ngIf="srv.tipoTrabajo !== 3" class="col-6">
+                <label>Fecha de ingreso</label>
+                <datepicker [maxDate]="getNow()" [(ngModel)]="srv.fechaInicio"></datepicker>
+              </div>
+              <div *ngIf="srv.tipoTrabajo !== 2" class="col-6">
+                <label>Fecha de egreso</label>
+                <datepicker [minDate]="srv.fechaInicio?srv.fechaInicio:null" [maxDate]="getNow()"
+                  [(ngModel)]="srv.fechaTermino"></datepicker>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col text-center">
+            <button type="button" class="btn btn-alt-info " (click)="srv.cargarTrabajadores()"
+              [disabled]="!srv.fechaRegistrada()">
+              Guardar fecha
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- SELECCIONAR TRABAJADORES -->
+      <div *ngIf="srv.trabajadoresCargados">
+        <div>
+          <div class="row align-items-start mb-30 px-30">
+            <div class="col-12">
+              <search class="ml-auto" [(searchText)]="filter"></search>
+            </div>
+          </div>
+          <div class="row justify-content-center mt-5 px-30">
+            <div class="col px-30">
+              <div>
+                <div class="table-responsive">
+                  <table class="table table-striped table-vcenter">
+                    <thead>
+                      <tr>
+                        <!-- <th class="text-center" style="width: 100px;"><i class="si si-user"></i></th> -->
+                        <th>Nombre</th>
+                        <th style="width: 30%;">Rut</th>
+                        <th class="text-center" style="width: 100px;">Acciones</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let trab of (srv.disponibles | filter:filter); let i = index" (click)="seleccionar(i)"
+                        class="pointer {{trab.seleccionado?'seleccionado':''}}">
+                        <!-- <td class="text-center">
+                          <img class="img-avatar img-avatar48" src="{{trab?.fotoUrl || defaultImg}}" alt="">
+                        </td> -->
+                        <td class="font-w600">{{trab.apellidos | titlecase}} {{trab.nombre | titlecase}}</td>
+                        <td>{{trab.rut | rut}}</td>
+
+                        <td class="text-center">
+                          <div class="btn-group">
+                            <button type="button" class="btn btn-sm btn-secondary" (click)="verFicha(trab.rut)">
+                              <i class="fa fa-arrow-right" ngbTooltip="ver ficha del trabajador" container="body"></i>
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div *ngIf="srv.disponibles.length === 0" class="row justify-content-center my-10">
+                  <div class="col-6 text-center">
+                    <i>No hay trabajadores disponibles para el periodo elegido. Cambie la(s) fecha(s) para encontrar
+                      trabajadores disponibles.</i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template #modalFooter>
+    <button type="button" [disabled]="!srv.trabajadoresCargados" class="btn btn-alt-secondary"
+      (click)="srv.resetearFecha()">
+      Cambiar fecha
+    </button>
+
+    <button type="button" class="btn btn-alt-info" (click)="registrar()" [disabled]="!srv.ifSeleccionados()">
+      Registrar Movimiento
+    </button>
+
+    <!-- <button type="button" class="btn btn-alt-info" (click)="limpiar()">
+      Limpiar BBDD
+    </button> -->
+  </ng-template>
+
+</app-modal-template>

@@ -1,0 +1,142 @@
+<app-modal-template modalTitle="{{materialInfo.nombre | uppercase}}" noPadding>
+    <ng-template #modalBody>
+
+       <ng-template [ngIf]="!loading" [ngIfElse]="loadingTemplate">
+            <div class="mt-150 text-center" *ngIf="!registros.length && indexEdit<0"><i>No hay registros de
+                    {{materialInfo?.nombre}} para este proyecto. <br>
+                    Para crear un registro presione el boton 'Agregar'</i>
+            </div>
+           
+            <table *ngIf="registros.length || indexEdit>=0" class="table table-hover table-sm">
+                
+                <thead class="text-center">
+                    <tr>
+                        <th scope="col" style="width: 5%"><i>Id</i></th>
+                        <th scope="col" style="width: 20%">Inicio</th>
+                        <th scope="col" style="width: 20%">Termino</th>
+                        <th scope="col" style="width: 15%">Cantidad
+                        </th>
+                        <th scope="col" style="width: 25%">Especificación</th>
+                        <th scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <ng-container *ngFor="let reg of registros; let i = index">
+           
+                        <ng-template [ngIf]="i!==indexEdit" [ngIfElse]="rowForm">
+                            <tr [class.text-disabled]="indexEdit>=0">
+                                <th class="text-center text-muted" scope="row">
+                                    <small><i>{{i + 1}}</i></small></th>
+                                <td class="text-center">
+                                    <small><i>{{reg.fechaInicio | date}}</i></small></td>
+                                <td class="text-center">
+                                    <small><i>{{reg.fechaTermino | date}}</i></small></td>
+                                <td class="d-none d-sm-table-cell text-center">
+                                    <strong>{{reg.cantidad}}</strong> &nbsp;{{materialInfo?.unidad}}
+                                </td>
+                                <td class="d-none d-sm-table-cell text-center">
+                                    <strong>{{reg.tipo}}</strong>
+                                </td>
+                                <td class="text-center pr-10">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-secondary"
+                                            (click)="editarRegistro(i, reg)" [disabled]="indexEdit>=0" style="width: 34px">
+                                            <i class="fa fa-edit"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-sm btn-danger " [disabled]="indexEdit>=0"
+                                            style="width: 34px" placement="bottom" [ngbPopover]="popContent"
+                                            popoverTitle="¿Eliminar registro?" container="body" #p="ngbPopover">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                        <ng-template #popContent>
+                                            <div class="text-center">
+                                                <button type="button" class="btn btn-sm btn-secondary  mr-2"
+                                                    (click)="p.close()" style="width: 34px">
+                                                    No
+                                                </button>
+                                                <button type="button" class="btn btn-sm btn-danger "
+                                                    (click)="eliminarRegistro(reg.id)" style="width: 34px">
+                                                    Sí
+                                                </button>
+                                            </div>
+                                        </ng-template>
+                                    </div>
+                                </td>
+                            </tr>
+                        </ng-template>
+           
+                    </ng-container>
+           
+                    <ng-container *ngIf="indexEdit===registros.length">
+                        <ng-container *ngTemplateOutlet="rowForm"></ng-container>
+                    </ng-container>
+           
+                </tbody>
+            </table>
+           
+       </ng-template>
+
+        
+    </ng-template>
+
+    <ng-template #modalFooter>
+        <button type="button" class="btn  btn-dark" (click)="agregarRegistro()" [disabled]="edit">
+            Agregar <i class="fa fa-plus-circle"></i>
+        </button>
+        <button type="button" class="btn btn-outline-dark" (click)="close()">Cerrar</button>
+    </ng-template>
+
+</app-modal-template>
+
+<ng-template #rowForm>
+    <tr [formGroup]="form" class="table-primary">
+        <th class="text-center text-muted" scope="row">
+            <small><i>{{indexEdit + 1}}</i></small>
+        </th>
+        <td>
+            <datepicker formControlName="fechaInicio" [minDate]="proyecto.inicio" [maxDate]="getHoy()" size="sm"></datepicker>
+        </td>
+
+        <td>
+            <datepicker [minDate]="fechaInicio.value" [maxDate]="getHoy()" formControlName="fechaTermino" size="sm"></datepicker>
+        </td>
+
+        <td class="d-flex"><input class="form-control form-control-sm" type="number" min="0" formControlName="cantidad" style="width: 80%" placeholder="0">
+            <span style="width: 20%">&nbsp;{{materialInfo?.unidad}}</span>
+        </td>
+
+        <td formArrayName="tipo" class="text-center">
+            <select *ngFor="let tipo of materialInfo.tipo | keyvalue; let i = index" [formControlName]="i" [style.width.%]="100/getKeys(materialInfo.tipo)"
+                class="custom-select custom-select-sm">
+                <option value="" [disabled]="true" [selected]="true">{{tipo.key}}</option>
+                <option *ngFor="let value of tipo.value" [value]="value">{{value}}
+                </option>
+            </select>
+        </td>
+
+        <td class="text-center pr-10">
+            <div class="btn-group">
+
+                <button type="button" class="btn btn-sm btn-success" (click)="completarRegistro()"
+                    [disabled]="form.invalid || form.pristine" style="width: 34px">
+                    <i class="fa fa-check"></i>
+                </button>
+
+                <button type="button" class="btn btn-sm btn-danger js-tooltip-enabled" (click)="cancelarRegistro()"
+                    style="width: 34px">
+                    <i class="fa fa-times"></i>
+                </button>
+            </div>
+        </td>
+    </tr>
+
+</ng-template>
+
+<ng-template class="hero" #loadingTemplate>
+    <div class="hero-inner mt-150">
+      <div class="content content-full text-center">
+        <i class="fa fa-5x fa-cog fa-spin text-primary"></i><br><br>
+        <h5 class="text-muted">Cargando...</h5>
+      </div>
+    </div>
+  </ng-template>

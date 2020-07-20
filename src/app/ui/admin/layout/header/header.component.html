@@ -1,0 +1,58 @@
+<header id="page-header">
+  <div class="content-header">
+    <div class="content-header-section">
+      <button type="button" class="btn btn-circle btn-dual-secondary" (click)="toggleCollapsed()">
+        <i class="fa fa-navicon"></i>
+      </button>
+      <!-- <button *ngIf="(sidebar$ | async)" type="button" class="btn btn-circle btn-dual-secondary"
+        (click)="toggleCollapsed()">
+        <i *ngIf="(collapsed$ | async)" class="si si-lock"></i>
+        <i *ngIf="!(collapsed$ | async)" class="si si-lock-open"></i>
+      </button> -->
+    </div>
+    <!-- <div *ngIf="testing" class="content-header-section px-30">
+        <ngb-alert [dismissible]="false">
+          <strong><u>Advertencia:</u></strong> Usted está trabajando un entorno de <strong>PRUEBA</strong>. Cualquier cambio que haga no se verá reflejado en la versión oficial de <strong>PRODUCCIÓN</strong>.
+        </ngb-alert>
+    </div> -->
+    <div class="content-header-section">
+      <div class="btn-group" role="group">
+        <button type="button" class="btn btn-rounded btn-dual-secondary" id="page-header-user-dropdown"
+          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {{(user$|async).email||'usuario'}}<i class="fa fa-angle-down ml-5"></i>
+        </button>
+        <div class="dropdown-menu dropdown-menu-right min-width-150" aria-labelledby="page-header-user-dropdown">
+          <a class="dropdown-item is-disabled" routerLink="">
+            <i class="si si-cup mr-5"></i> Dashboard
+          </a>
+          <!-- <div class="dropdown-divider"></div>
+          <a class="dropdown-item" routerLink="/trabajadores/lista">
+            <i class="si si-users mr-5"></i> Lista de Trabajadores
+          </a>
+          <a class="dropdown-item" routerLink="/trabajadores/nominas">
+            <i class="fa fa-dollar mr-5"></i> Nóminas Mensuales
+          </a>
+          <div class="dropdown-divider"></div> -->
+          <a class="dropdown-item" routerLink="/cotizaciones">
+            <i class="si si-docs mr-5"></i> Cotizaciones
+          </a>
+          <a class="dropdown-item is-disabled" routerLink="">
+            <i class="si si-users mr-5"></i> Clientes
+          </a>
+          <!-- <a class="dropdown-item" routerLink="/oocc">
+            <i class="si si-basket mr-5"></i> Ordenes de Compra
+          </a> -->
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item is-disabled" routerLink="">
+            <i class="fa fa-cog mr-5"></i> Ajustes
+          </a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" (click)="logout()">
+            <i class="si si-logout mr-5"></i> Salir
+          </a>
+        </div>
+      </div>
+      <!-- <ui-activity></ui-activity> -->
+    </div>
+  </div>
+</header>

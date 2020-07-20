@@ -1,0 +1,10 @@
+.text-disabled, .text-disabled td small i{
+    color: rgb(179, 179, 179);
+}
+
+.divider {
+    height: 0;
+    margin: .5rem 0;
+    overflow: hidden;
+    border-bottom: 1px solid #000000
+}

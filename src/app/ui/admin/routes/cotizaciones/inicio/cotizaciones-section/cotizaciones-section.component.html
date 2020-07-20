@@ -1,0 +1,11 @@
+<div class="content-heading">
+  Cotizaciones ({{(cotizaciones | filter: filter).length}})
+</div>
+<div class="block block-rounded">
+  <div class="block-content bg-body-light pb-20">
+    <search [(searchText)]="filter"></search>  
+  </div>
+  <div class="block-content p-0">
+    <table-cotizaciones [cotizaciones]="cotizaciones | filter: filter"></table-cotizaciones>
+  </div>
+</div>

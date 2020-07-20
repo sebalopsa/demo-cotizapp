@@ -1,0 +1,41 @@
+<card-template cardTitle="Información del proyecto" show>
+
+  <ng-template #btnTemplate>
+    <button *ngIf="!editing" type="button" class="card-action btn-block-option" (click)="openInfoEdit()" ngbTooltip="Editar información">
+      <i class="fa fa-pencil text-white"></i>
+    </button>
+  </ng-template>
+
+  <ng-template #componentTemplate>
+    <div class="row m-20">
+      <div class="col-12">
+        <label class="text-primary">Ubicación</label>
+        <h4 class="text-primary-dark text-capitalize">{{proyecto?.ubicacion}}</h4>
+      </div>
+      <div class="col-6">
+        <label class="text-primary">Nro. Contrato</label>
+        <h4 class="text-primary-dark">{{proyecto?.contrato}}</h4>
+      </div>
+      <div class="col-6">
+        <label class="text-primary">Cotización</label>
+        <h4 class="text-primary-dark" [ngbTooltip]="cotInfo">{{proyecto?.cotizacion?.folio}}</h4>
+      </div>
+      <div class="col-6">
+        <label class="text-primary">Inicio</label>
+        <h4 class="text-primary-dark">{{proyecto?.inicio | date:'dd/MM/yyyy'}}</h4>
+      </div>
+      <div class="col-6">
+        <label class="text-primary">Término</label>
+        <h4 class="text-primary-dark">{{proyecto?.termino | date:'dd/MM/yyyy'}}</h4>
+      </div>
+    </div>
+  </ng-template>
+</card-template>
+
+<ng-template #cotInfo>
+  <div class="text-left">
+    Monto neto: ${{proyecto?.cotizacion?.totalNeto | number:'1.0-0'}}
+    <br>
+    IVA: ${{proyecto?.cotizacion?.iva | number:'1.0-0'}}
+  </div>
+</ng-template>

@@ -1,0 +1,37 @@
+<div class="block card-proyecto pb-3">
+  <div class="block-header justify-content-center d-flex">
+    <h5 class="font-w600 text-center text-uppercase text-primary-dark mb-0">
+      {{proyecto?.nombre | slice:0:25}}
+      {{proyecto?.nombre.length>25?'...':''}}</h5>
+    <span class="badge badge-{{color()}} mt-auto align-self-end">{{proyecto?.estado}}</span>
+  </div>
+  <hr class="m-0" />
+
+  <div class="bg-gray-dark row gutters-tiny m-0 p-10 text-center">
+    <div class="col-3 d-flex flex-column justify-content-between" *ngFor="let item of avance | keyvalue">
+      <div class="font-size-xs font-w600 text-uppercase" style="overflow-x: hidden;"><small class="text-gray-light">{{item.key.slice(0,5)}}</small></div>
+      <h3 class="font-w600 text-white mb-0">
+        {{item.value.total}}
+      </h3>
+      <div>
+        <small class="font-size-xs text-gray-light">{{item.value.unidad}}</small>
+      </div>
+    </div>
+  </div>
+  <div class="p-20">
+    <small class="text-muted">Calendario</small>
+    <p>
+      <ngb-progressbar type="secondary" [value]="reloj()" height="10px"></ngb-progressbar>
+    </p>
+    <small class="text-muted">Avance financiero</small>
+    <p>
+      <ngb-progressbar type="primary" [value]="avanceFinanciero()" height="10px"></ngb-progressbar>
+    </p>
+  </div>
+  <div class="text-center">
+    <button type="button" class="btn btn-md btn-secondary" [routerLink]="proyecto.id">
+      Ver proyecto <i class="fa fa-file-alt"></i>
+    </button>
+
+  </div>
+</div>

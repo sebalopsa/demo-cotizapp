@@ -1,0 +1,15 @@
+/* The sidebar menu */
+.panel {
+    color: rgb(253, 253, 253);
+    font-size: 1.2em;
+    height: 125%; 
+    width: 320px; 
+    position: fixed; 
+    z-index: 1; 
+    top: 0; 
+    right: -400px;
+    background-color: rgba(17, 17, 17, 0.63); 
+    overflow-x: hidden; 
+    padding-top: 20px;
+  }
+  

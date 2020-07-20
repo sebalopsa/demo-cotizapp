@@ -1,0 +1,73 @@
+<table class="table table-borderless table-hover">
+  <!-- ENCABEZADOS -->
+  <thead>
+    <tr>
+      <th>NRO.</th>
+      <th>FECHA</th>
+      <th>SERVICIO</th>
+      <th>MONTO/IVA</th>
+      <th class="text-center">ESTADO</th>
+      <th>ACCIONES</th>
+    </tr>
+  </thead>
+  <!-- //ENCABEZADOS -->
+  <tbody>
+    <tr *ngFor="let cotizacion of cotizaciones" [@collapse] [@collapseOnLeave]
+      class="{{cotizacion.estado=='nula'?'nula':''}}">
+      <!-- FOLIO -->
+      <td>
+        <a class="font-w600">{{cotizacion?.folio}}</a>
+      </td>
+      <!-- FECHA -->
+      <td class="d-none d-sm-table-cell">
+        <i>{{cotizacion?.fecha | date:'dd-MM-yyyy'}}</i> </td>
+      <!-- SERVICIO/CLIENTE -->
+      <td class="d-none d-sm-table-cell">
+        <span class="font-w600 text-muted">{{cotizacion?.servicio}}</span><br> <i class="font-weight-normal">para
+        </i><span class="text-muted">{{cotizacion?.cliente?.nombre}}</span>
+      </td>
+      <!-- MONTO/IVA -->
+      <td class="text-right">
+        <span class="text-black">${{cotizacion?.totalNeto | number:cotizacion.divisa == 'CLP' ? '1.0-0' : '1.0-2'}}</span> <br> <span class="text-muted">${{cotizacion?.iva
+                  | number:cotizacion.divisa == 'CLP' ? '1.0-0' : '1.0-2'}}</span>
+      </td>
+      <td class="text-center">
+        <div class="btn-group" role="group">
+          <a class="dropdown-toggle" id="btnGroupDrop1" data-toggle="dropdown" aria-haspopup="false"
+            aria-expanded="false">
+            <span *ngIf="cotizacion?.estado == 'pendiente'" class="badge badge-info">Pendiente</span>
+            <span *ngIf="cotizacion?.estado == 'aceptada'" class="badge badge-success">Aceptada</span>
+            <span *ngIf="cotizacion?.estado == 'rechazada'" class="badge badge-danger">Rechazada</span>
+            <span *ngIf="cotizacion?.estado == 'nula'" class="badge badge-secondary">Nula</span>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="btnGroupDrop1" x-placement="bottom-start"
+            style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 34px, 0px);">
+            <a class="dropdown-item text-info" (click)="cambiarEstado(cotizacion.id, 'pendiente')">
+              <i class="fa fa-fw fa-clock-o mr-5"></i>Pendiente
+            </a>
+            <a class="dropdown-item text-success" (click)="cambiarEstado(cotizacion.id, 'aceptada')">
+              <i class="fa fa-fw fa-check-square-o mr-5"></i>Aceptada
+            </a>
+            <a class="dropdown-item text-danger" (click)="cambiarEstado(cotizacion.id, 'rechazada')">
+              <i class="fa fa-fw fa-user-times mr-5"></i>Rechazada
+            </a>
+            <a class="dropdown-item text-muted" (click)="cambiarEstado(cotizacion.id, 'nula')">
+              <i class="fa fa-fw fa-trash-o mr-5"></i>Nula
+            </a>
+          </div>
+        </div>
+      </td>
+      <td class="d-none d-sm-table-cell" style="width: 15%">
+        <button type="button" class="btn btn-sm btn-circle btn-alt-secondary mr-5 mb-5" (click)="verPdf(cotizacion)" placement="bottom" ngbTooltip="Ver Cotización">
+          <i class="fa fa-download"></i>
+        </button>
+        <button type="button" class="btn btn-sm btn-circle btn-alt-success mr-5 mb-5" (click)="clonar(cotizacion)" placement="bottom" ngbTooltip="Clonar Cotización">
+          <i class="fa fa-clone text"></i>
+        </button>
+        <!-- <button type="button" class="btn btn-sm btn-circle btn-alt-primary mr-5 mb-5" (click)="crearProyecto(cotizacion)" placement="bottom" ngbTooltip="Crear Proyecto">
+          <i class="fa fa-briefcase text"></i>
+        </button> -->
+      </td>
+    </tr>
+  </tbody>
+</table>

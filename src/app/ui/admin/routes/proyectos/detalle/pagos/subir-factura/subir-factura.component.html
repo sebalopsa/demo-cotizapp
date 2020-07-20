@@ -1,0 +1,47 @@
+<app-modal-template modalTitle="Subir factura">
+
+  <ng-template #modalBody>
+    <form [formGroup]="form">
+      <div class="row">
+        <div class="col-5 form-group">
+          <label>Fecha</label>
+          <div class="input-group">
+            <input type="text" placeholder="aaaa-mm-dd" class="form-control {{fechaCtrl.touched && fechaCtrl.invalid ? 'is-invalid':''}}
+                                {{fechaCtrl.touched && fechaCtrl.valid ? 'is-valid':''}}" formControlName="fecha"
+              ngbDatepicker #d="ngbDatepicker">
+            <div class="input-group-append">
+              <button class="btn btn-outline-primary" (click)="d.toggle()" type="button"><i
+                  class="fa fa-calendar"></i></button>
+            </div>
+          </div>
+        </div>
+        <div class="col-4 form-group">
+          <label>Monto</label>
+          <input type="email" class="form-control {{montoCtrl.touched && montoCtrl.invalid ? 'is-invalid':''}}
+      {{montoCtrl.touched && montoCtrl.valid ? 'is-valid':''}}" formControlName="monto" placeholder="Pesos">
+        </div>
+        <div class="col-3 form-group">
+          <label>Folio</label>
+          <input type="email" class="form-control {{folioCtrl.touched && folioCtrl.invalid ? 'is-invalid':''}}
+      {{folioCtrl.touched && folioCtrl.valid ? 'is-valid':''}}" formControlName="folio" placeholder="1234">
+        </div>
+      </div>
+
+      <dropzone-btn [docName]="'factura'" (fileLoaded)="fileCtrl.setValue($event)"></dropzone-btn>
+
+    </form>
+  </ng-template>
+
+  <ng-template #modalFooter>
+    <span *ngIf="form.invalid && (form.touched)" class="invalid">
+      Debe completar todos los campos con datos válidos.
+    </span>
+    <button type="button" [disabled]="uploading || form.invalid"
+      class="btn btn-lg btn-alt-{{uploading?'success':'info'}}" (click)="subir()">
+      <i *ngIf="!uploading" class="si si-cloud-upload mr-5"></i>
+      <i *ngIf="uploading" class="fa fa-circle-o-notch fa-spin mr-5"></i>
+      {{uploading?'Subiendo':'Subir'}}
+    </button>
+  </ng-template>
+
+</app-modal-template>

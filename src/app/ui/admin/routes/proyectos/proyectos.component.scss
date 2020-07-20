@@ -1,0 +1,15 @@
+$grid-gutter-width: 15px;
+
+@import "node_modules/bootstrap/scss/bootstrap.scss";
+
+.row{
+    margin-bottom: 10px
+}
+
+.hero{
+    height: 70vh;
+}
+.super-icon {
+    font-size: 8em;
+    color: var(--primary-light);
+}

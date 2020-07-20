@@ -1,0 +1,9 @@
+<div class="block block-link-shadow text-right" (mouseover)="hover=true" (mouseout)="hover=false">
+  <div class="block-content block-content-full clearfix">
+    <div class="float-left mt-10">
+      <i class="{{icon}} fa-3x text-{{hover?'info':'body-bg-dark'}}"></i>
+    </div>
+    <div class="font-size-h3 font-w600">{{stat || 0}}</div>
+    <div class="font-size-sm font-w600 text-uppercase text-muted">{{subtext}}</div>
+  </div>
+</div>

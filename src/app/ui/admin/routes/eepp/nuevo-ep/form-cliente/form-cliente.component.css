@@ -1,0 +1,23 @@
+
+.cliente{
+    background-color: rgb(245, 245, 245) !important;
+    padding: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+
+.cliente:hover{
+    /* background-color: rgb(245, 245, 245); */
+    border: 1px solid rgb(219, 219, 219);
+    border-radius: 5px;
+}
+
+.highlight{
+    padding: 10px;
+}
+
+.highlight:hover{
+    background-color: rgba(119, 187, 209, 0.17);
+    border-radius: 5px;
+}

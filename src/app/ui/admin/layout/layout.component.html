@@ -1,0 +1,16 @@
+<div id="page-container"
+    class="{{(sidebar$ | async)? 'sidebar-o sidebar-o-xs' : ''}} {{(collapsed$ | async)?'sidebar-mini':''}} sidebar-inverse enable-page-overlay side-scroll page-header-modern main-content-narrow side-trans-enabled">
+    <div id="page-overlay"></div>
+    <layout-sidebar></layout-sidebar>
+    <button *ngIf="this.sidebar==false" class="btn btn-sm btn-link" (click)="toggleSidebar()">
+        <i class="fa fa-2x fa-angle-double-right"></i>
+        
+    </button>
+    <layout-header></layout-header>
+    <main id="main-container" style="min-height: 599px;">
+        <router-outlet></router-outlet>
+    </main>
+    <!-- <layout-footer></layout-footer> -->
+</div>
+<div *ngIf="(modal$ | async)" class="modal-backdrop fade show" (click)="cerrarModal()"></div>
+<pdf-view-modal></pdf-view-modal>

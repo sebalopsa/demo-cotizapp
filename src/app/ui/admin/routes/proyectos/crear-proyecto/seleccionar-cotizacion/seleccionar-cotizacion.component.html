@@ -1,0 +1,40 @@
+<div class="modal-header bg-white border-bottom">
+  <h4 class="modal-title">Seleccione Cotización</h4>
+  <a type="button" class="close" aria-label="Close" (click)="close()">
+    <span aria-hidden="true">&times;</span>
+</a>
+</div>
+<div class="modal-body p-0" style="height: 60vh;">
+  <div class="block-content bg-body-light p-0">
+    <div class="input-group search">
+      <input type="text" class="form-control form-control-lg" [(ngModel)]="filter" placeholder="Buscar...">
+      <i *ngIf="filter!=null" class="clear fa fa-times text-muted" (click)="filter=null"></i>
+    </div>
+  </div>
+  <div class="scrollable">
+    <table class="table table-hover table-sm">
+      <tbody>
+        <tr *ngFor="let cotizacion of cotizaciones$ | async | filter:filter" style="cursor: pointer;"
+          (click)="seleccionar(cotizacion)">
+          <td class="pl-20">
+            <a class="font-w600">{{cotizacion?.folio}}</a>
+          </td>
+          <td class="d-none d-sm-table-cell">
+            <i>{{cotizacion?.timestamp | date:'dd-MM-yyyy'}}</i> </td>
+          <td class="d-none d-sm-table-cell">
+            <span class="font-w600 text-muted">{{cotizacion?.servicio}}</span><br> <i class="font-weight-normal">para
+            </i><span class="text-muted">{{cotizacion?.cliente?.nombre}}</span>
+          </td>
+          <td class="text-right pr-20">
+            <span class="text-black">${{(cotizacion?.totalNeto + cotizacion?.iva) | number:'1.0-0'}}</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary mr-auto" (click)="close()">
+    Cerrar
+  </button>
+</div>

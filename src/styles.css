@@ -1,0 +1,130 @@
+/* You can add global styles to this file, and also import other style files */
+
+a{
+    cursor: pointer;
+    color: #006596
+}
+
+button.nav-trigger{
+    visibility: hidden !important;
+}
+
+.card{
+    border-radius: 0 !important;
+    box-shadow: none
+}
+
+.btn-dark{
+    background-color: #35353A !important;
+    border-color: #35353A !important;
+    color: whitesmoke !important;
+}
+
+.btn-outline.btn-outline-dark{
+    color: #35353A !important;
+    border-color: #35353A !important;
+}
+
+.btn-primary{
+    background-color: #006596 !important;
+    border-color: #006596 !important;
+}
+
+.btn-outline.btn-outline-primary{
+    color: #006596 !important;
+    border-color: #006596 !important;
+}
+
+.card.clickable:hover{
+    border-color: #006596 !important;
+    box-shadow: 0px 4px #006596 !important;
+}
+
+.form-control.is-invalid {
+    background-color: rgb(243, 226, 226) !important;
+    border: 1px solid #f08987 !important;
+    /* border-color: #ef5350; */
+
+}
+
+
+.block-bordered{
+    border: 1px solid gainsboro;
+}
+
+.block-bordered-2{
+    border: 2px solid gainsboro;
+}
+
+.block-shading{
+    box-shadow: 1px 1px 2px 0px gainsboro !important;
+}
+
+.block-bg-blue{
+    background-color: #3f9ce811 !important;
+}   
+
+.block-shading-blue{
+    box-shadow: 1px 1px 2px 0px #3f9ce85d !important;
+}
+
+.nav-submenu{
+    color: rgba(228,231,237,.75) !important;
+}
+
+.is-disabled {
+    color: currentColor;
+    pointer-events: none;
+    opacity: 0.5;
+    text-decoration: none;
+  }
+
+  
+.modal-content{
+    border-radius: 8px;
+    box-shadow:0 2px 30px rgba(0,0,0,0.3)
+}
+
+.dropdown-toggle::after{
+    display: none
+}
+
+
+/* ESTILOS SCROLL */
+
+html {
+    overflow: -moz-scrollbars-vertical; 
+    overflow-y: scroll;
+  }
+  
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  /* Estilos barra (thumb) de scroll */
+  
+  ::-webkit-scrollbar-thumb {
+    background: #bbb;
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:active {
+    background-color: #ccc;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #b3b3b3;
+    /* box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2); */
+  }
+  
+  /* Estilos track de scroll */
+  
+  ::-webkit-scrollbar-track {
+    background: #e1e1e1;
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-track:hover, ::-webkit-scrollbar-track:active {
+    background: #d4d4d4;
+  }

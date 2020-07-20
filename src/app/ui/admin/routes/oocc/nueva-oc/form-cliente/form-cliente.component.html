@@ -1,0 +1,54 @@
+<div class="py-10 highlight">
+  <div class="row cliente mx-2" (click)="clicked()">
+    <div class="col-lg-6">
+      <div class="row">
+        <div class="col-lg-3">
+          <label for="">Cliente:</label>
+        </div>
+        <div class="col-lg-9">
+          {{document?.cliente?.nombre}}
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="row">
+        <div class="col-lg-3">
+          <label for="">Teléfono:</label>
+        </div>
+        <div class="col-lg-9">
+          {{document?.cliente?.telefono}}
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="row">
+        <div class="col-lg-3">
+          <label for="">Rut:</label>
+        </div>
+        <div class="col-lg-9">
+          {{document?.cliente?.rut | rut}}
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="row">
+        <div class="col-lg-3">
+          <label for="">Correo:</label>
+        </div>
+        <div class="col-lg-9">
+          {{document?.cliente?.email}}
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="row">
+        <div class="col-lg-3">
+          <label for="">Dirección:</label>
+        </div>
+        <div class="col-lg-9">
+          {{document?.cliente?.direccion}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+<a class="block block-link-pop block-link-shadow block-rounded borde-card altura-fija text-right" (click)="clicked()" (mouseenter)="hovered=true"
+(mouseleave)="hovered=false">
+  <div class="block-content block-content-full clearfix bg-{{color}}">
+    <div class="float-left mt-10">
+      <i class="{{icon}} fa-5x text-{{hovered?'success':'muted-light'}} transition"></i>
+    </div>
+    <div class="font-size-h3 font-w600">{{text}}</div>
+    <div class="font-size-sm font-w600 text-uppercase text-muted">{{subtext}}</div>
+  </div>
+</a>

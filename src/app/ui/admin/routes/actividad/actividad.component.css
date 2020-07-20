@@ -1,0 +1,14 @@
+.log{
+    height: 56px;
+}
+.log:hover{
+    background-color: aliceblue;
+}
+
+.hero{
+    height: 70vh;
+}
+.super-icon {
+    font-size: 8em;
+    color: var(--primary-light);
+}

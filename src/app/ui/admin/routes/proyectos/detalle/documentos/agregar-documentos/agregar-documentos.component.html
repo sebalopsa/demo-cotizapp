@@ -1,0 +1,27 @@
+<app-modal-template modalTitle="Subir archivos">
+  <ng-template #modalBody>
+    <div class="row p-10 h-100">
+      <a class="col-5">
+        <boton-dropzone></boton-dropzone>
+      </a>
+      <div class="col-7 scrollable">
+        <elemento-lista *ngFor="let doc of srv.docs.controls.reverse(); let i = index" [documento]="doc" [index]="i">
+        </elemento-lista>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template #modalFooter>
+    <span *ngIf="srv.form.invalid && (srv.form.touched)" class="invalid">
+      Debe completar todos los campos con datos válidos.
+    </span>
+    <button type="button" [disabled]="srv.uploading || srv.form.invalid || srv.docs.value.length == 0"
+      class="btn btn-lg btn-alt-{{srv.uploading?'success':'info'}}" (click)="subir()">
+      <i *ngIf="!srv.uploading" class="si si-cloud-upload mr-5"></i>
+      <i *ngIf="srv.uploading" class="fa fa-circle-o-notch fa-spin mr-5"></i>
+      {{srv.uploading?'Subiendo':'Subir'}} {{srv.docs.length? srv.docs.length : 0}}
+      archivo{{srv.docs.length!=1? 's' : ''}}
+      ({{srv.totalSize  | filesize}})
+    </button>
+  </ng-template>
+
+</app-modal-template>

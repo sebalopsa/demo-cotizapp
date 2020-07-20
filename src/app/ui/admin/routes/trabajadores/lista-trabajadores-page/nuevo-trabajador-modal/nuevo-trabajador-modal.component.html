@@ -1,0 +1,68 @@
+<div *ngIf="opened" class="modal fade {{opened?'show display-block':'display-none'}}">
+  <div class="modal-dialog modal-dialog-fromright mt-100" role="document">
+    <form [formGroup]="nuevoTrabajadorForm" (ngSubmit)="create()">
+      <div class="modal-content">
+        <div class="block block-transparent mb-0 {{loading?'block-mode-loading':''}}">
+          <!-- header -->
+          <div class="block-header bg-body-light">
+            <h3 class="block-title">Agregar Trabajador</h3>
+            <div class="block-options">
+              <button type="button" class="btn-block-option" (click)="close()">
+                <i class="fa fa-close"></i>
+              </button>
+            </div>
+          </div>
+          <!-- /header -->
+          <div class="block-content">
+            <!-- input rut -->
+            <div
+              class="form-group row {{rutControl.errors && (rutControl.dirty || rutControl.touched)?'is-invalid':''}}">
+              <div class="col-12">
+                <label>Rut</label>
+                <input type="text" class="form-control" formControlName="rut" placeholder="Ingrese rut" formatRut>
+                <div *ngIf="rutControl.errors?.invalidRut" class="invalid-feedback animated fadeInDown">Ingrese un rut válido</div>
+                <div *ngIf="rutControl.errors?.required" class="invalid-feedback animated fadeInDown">Este campo es
+                  obligatorio</div>
+              </div>
+            </div>
+            <!-- /input rut -->
+            <!-- input nombre -->
+            <div
+              class="form-group row {{nombreControl.errors && (nombreControl.dirty || nombreControl.touched)?'is-invalid':''}}">
+              <div class="col-12">
+                <label>Nombre</label>
+                <input type="text" class="form-control" formControlName="nombre" placeholder="Ingrese nombre">
+                <div *ngIf="nombreControl.errors?.minlength" class="invalid-feedback animated fadeInDown">Debe tener al
+                  menos 3 letras</div>
+                <div *ngIf="nombreControl.errors?.required" class="invalid-feedback animated fadeInDown">Este campo es
+                  obligatorio</div>
+              </div>
+            </div>
+            <!-- /input nombre -->
+            <!-- input apellidos -->
+            <div
+              class="form-group row {{apellidosControl.errors && (apellidosControl.dirty || apellidosControl.touched)?'is-invalid':''}}">
+              <div class="col-12">
+                <label>Apellidos</label>
+                <input type="text" class="form-control" formControlName="apellidos" placeholder="Ingrese apellidos">
+                <div *ngIf="apellidosControl.errors?.minlength" class="invalid-feedback animated fadeInDown">Debe tener al
+                  menos 3 letras</div>
+                <div *ngIf="apellidosControl.errors?.required" class="invalid-feedback animated fadeInDown">Este campo es
+                  obligatorio</div>
+              </div>
+            </div>
+            <!-- /input apellidos -->
+          </div>
+        </div>
+        <!-- footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-alt-secondary" (click)="close()">Cancelar</button>
+          <button type="submit" class="btn btn-alt-success" [disabled]="!nuevoTrabajadorForm.valid">
+            <i class="fa fa-check"></i> Confirmar
+          </button>
+        </div>
+        <!-- /footer -->
+      </div>
+    </form>
+  </div>
+</div>

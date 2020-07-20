@@ -1,0 +1,29 @@
+textarea{
+    cursor: pointer;
+    background-color: rgb(245, 245, 245) !important;
+    border: 0px solid rgb(179, 179, 179) !important;
+    border-radius: 2px !important;
+    transition: 0.2s;
+}
+
+textarea:hover{
+    border: 1px solid rgb(179, 179, 179) !important;
+}
+
+textarea:focus{
+    border: 1px solid rgb(140, 197, 223) !important;
+    background-color: rgb(255, 255, 255) !important;
+    transition: 0.2s;
+}
+.highlight{
+    padding: 10px;
+}
+
+.highlight:hover, tr:hover{
+    background-color: rgba(119, 187, 209, 0.17) !important;
+    border-radius: 5px !important;
+}
+
+label{
+    cursor: pointer;
+}

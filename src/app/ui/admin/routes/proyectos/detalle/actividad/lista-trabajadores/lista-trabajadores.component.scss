@@ -1,0 +1,16 @@
+td {
+    text-overflow: ellipsis !important;
+    overflow: hidden !important;
+    white-space: nowrap;
+}
+
+.btn-hover{
+    opacity: 0;
+    transition: .1s;
+}
+
+tr{
+    &:hover .btn-hover{
+        opacity: 1;
+    }
+}

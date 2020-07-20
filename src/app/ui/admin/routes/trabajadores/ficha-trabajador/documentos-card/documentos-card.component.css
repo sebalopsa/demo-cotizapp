@@ -1,0 +1,5 @@
+td{
+    vertical-align: middle;
+    overflow-x: hidden !important;
+    text-overflow: ellipsis;
+}

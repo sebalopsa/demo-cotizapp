@@ -1,0 +1,113 @@
+<div class="content js-appear-enabled animated fadeIn">
+  <nav class="breadcrumb bg-white push">
+    <span class="breadcrumb-item text-uppercase">Trabajadores</span>
+    <a class="breadcrumb-item text-uppercase" routerLink="/trabajadores/lista">Lista de Trabajadores</a>
+    <span class="breadcrumb-item active">{{trabajador?.nombre}} {{trabajador?.apellidos}}</span>
+  </nav>
+</div>
+<!-- Datos trabajador -->
+<div class="content">
+  <div>
+    <div class="block block-rounded js-appear-enabled animated fadeIn">
+      <div class="block-content padding">
+
+        <ficha-trabajador-header [trabajador]="trabajador"></ficha-trabajador-header>
+
+        <!-- Dropdown opciones -->
+        <div class="text-right" style="height: 40px">
+          <div [hidden]="editing">
+            <button type="button" class="btn btn-rounded btn-noborder btn-outline-secondary " id="toolbarDrop"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Opciones <i class="fa fa-ellipsis-v ml-2"></i></button>
+            <div class="dropdown-menu" aria-labelledby="toolbarDrop" x-placement="bottom-start"
+              style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 34px, 0px);">
+              <a class="dropdown-item" (click)="editar()">
+                <i class="fa fa-fw fa-pencil mr-5"></i>Editar
+              </a>
+              <a *ngIf="!trabajador.inactivo" class="dropdown-item" (click)="desvincular()">
+                <i class="fa fa-fw fa-user-times mr-5"></i>Desvincular
+              </a>
+              <a *ngIf="trabajador.inactivo" class="dropdown-item" (click)="reincorporar()">
+                <i class="fa fa-fw fa-user-times mr-5"></i>Reincorporar
+              </a>
+              <a class="dropdown-item" (click)="modalEliminar(confirmContent)">
+                <i class="fa fa-fw fa-trash mr-5"></i>Eliminar
+              </a>
+            </div>
+          </div>
+
+          <div *ngIf="editing">
+            <button type="button" class="btn btn-lg btn-circle btn-outline-danger mr-5 mb-5" (click)="cancel()">
+              <i class="fa fa-times"></i>
+            </button>
+            <button type="button" [disabled]="trabajadorForm.invalid || trabajadorForm.pristine"
+              class="btn btn-lg btn-circle btn-outline-success mr-5 mb-5" (click)="save()">
+              <i class="fa fa-check"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- //Dropdown opciones -->
+
+        <!-- Datos del trabajador -->
+        <ficha-trabajador-datos [trabajadorForm]="trabajadorForm" [trabajador]="trabajador" [editing]="editing">
+        </ficha-trabajador-datos>
+
+        <!-- <Datos del trabajador -->
+
+        <div class="divider mb-50"></div>
+
+        <div *ngIf="editing" class="text-center">
+          <button type="button" class="btn btn-lg btn-circle btn-outline-danger mr-5 mb-5" (click)="cancel()">
+            <i class="fa fa-times"></i>
+          </button>
+          <button type="button" [disabled]="trabajadorForm.invalid || trabajadorForm.pristine"
+            class="btn btn-lg btn-circle btn-outline-success mr-5 mb-5" (click)="save()">
+            <i class="fa fa-check"></i>
+          </button>
+        </div>
+
+        <!-- Documentos del trabajador -->
+        <div class="row justify-content-center">
+          <div class="col-8">
+            <documentos-card *ngIf="!editing" [trabajador]="trabajador"></documentos-card>
+          </div>
+        </div>
+
+        <!-- <Documentos del trabajador -->
+
+      </div>
+
+    </div>
+    <!-- Boton regresar -->
+    <div class="row justify-content-center">
+      <a class="btn btn-hero btn-rounded btn-alt-secondary" (click)="back()">
+        <i class="fa fa-arrow-left mr-10"></i> Volver
+      </a>
+    </div>
+    <!-- <Boton regresar -->
+  </div>
+</div>
+
+<!-- Datos trabajador -->
+
+
+
+<!-- Modal confirmacion al eliminar -->
+<ng-template #confirmContent let-modal>
+  <div class="modal-header text center" style="background-color: #ef5350;">
+    <h5 class="modal-title text-center text-white">Confirmación</h5>
+  </div>
+  <div class="modal-body">
+    <h5 class="text-muted">¿Está seguro que desea eliminar a este trabajador de todos los registros de la base de datos?
+    </h5>
+    <div class="text-center">
+      <a class="btn btn-outline-danger mr-2" (click)="modal.close()">
+        No
+      </a>
+      <a class="btn btn-danger text-white" (click)="eliminar();modal.close()">
+        Si
+      </a>
+    </div>
+  </div>
+</ng-template>

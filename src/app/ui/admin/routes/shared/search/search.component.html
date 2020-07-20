@@ -1,0 +1,15 @@
+<form>
+  <div class="form-group m-0">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Buscar.." name="search" [(ngModel)]="searchText" (ngModelChange)="textChanged($event)">
+      <div class="input-group-append">
+        <button *ngIf="!searchText" type="submit" class="btn btn-secondary">
+          <i class="fa fa-search"></i>
+        </button>
+        <button *ngIf="searchText" type="button" class="btn btn-secondary" (click)="textChanged('')">
+          <i class="fa fa-times text-pulse"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,40 @@
+<div class="table-responsive push" [formGroup]="parentForm">
+  <table class="table table-hover table-bordered" formArrayName="detalle">
+    <thead>
+      <tr>
+        <th style="width: 40%">Descripción</th>
+        <th>Cantidad</th>
+        <th>Unidad</th>
+        <th style="width: 20%">P. Unitario</th>
+        <th>Subtotal</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of detalleArray.controls; let i = index" formGroupName="{{i}}">
+        <td class="text-left">
+          <textarea style="width: 90%" formControlName="descripcion" class="form-control {{item.get('descripcion').invalid?'is-invalid':''}}"></textarea>
+        </td>
+        <td class="text-left">
+          <input type="number" step="1" min="1" formControlName="cantidad" class="form-control {{item.get('cantidad').invalid?'is-invalid':''}}" style="width: 70%">
+        </td>
+        <td class="text-left">
+          <input type="text" formControlName="unidad" class="form-control {{item.get('unidad').invalid?'is-invalid':''}}" style="width: 70%">
+        </td>
+        <td class="text-left">
+          <input type="number" step="1000" min="0" formControlName="precio_unitario" class="form-control {{item.get('precio_unitario').invalid?'is-invalid':''}}" style="width: 100%">
+        </td>
+        <td class="subtotal text-right">${{subtotal(item.value) | number:cotizacion.divisa=='CLP'?'1.0-0':'1.0-2'}}</td>
+        <td style="width: 10%" class="text-center">
+            <button type="button" class="btn btn-xs btn-rounded btn-alt-success mr-5" (click)="agregar(i)">
+              <i class="fa fa-plus"></i>
+            </button>
+            <button *ngIf="detalleArray.length > 1" type="button" class="btn btn-xs btn-rounded btn-alt-danger mr-5"
+              (click)="quitar(i)">
+              <i class="fa fa-minus"></i>
+            </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

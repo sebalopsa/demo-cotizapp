@@ -1,0 +1,17 @@
+<div class="content-heading">
+  Vista general
+</div>
+<div class="row gutters-tiny">
+  <div class="col-md-6 col-xl-3">
+    <btn-card [text] ="'Nuevo'" [subtext] ="'documento'" [color] ="'green'" [icon]="'si si-plus'" (onClick)="nuevaClicked()"></btn-card>
+  </div>
+  <div class="col-md-6 col-xl-3">
+    <stat-total [total]="count"></stat-total>
+  </div>
+  <div class="col-md-6 col-xl-3">
+    <stat-this-month [items]="oocc"></stat-this-month>
+  </div>
+  <div class="col-md-6 col-xl-3">
+    <stat-average [items]="oocc"></stat-average>
+  </div>
+</div>

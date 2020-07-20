@@ -1,0 +1,28 @@
+input {
+  border-width: 3px;
+  border-color: white;
+  border-radius: .5rem;
+  background-color: white;
+  align-self: center;
+  min-width: 1px;
+  max-width: 650px;
+  padding: 2px 7px;
+
+  &.lg {
+    height: 100%;
+    font-size: 3rem;
+  }
+  &:focus {
+    border-color: #77b2ff;
+  }
+}
+
+.div {
+  padding: 2px 15px;
+  font-size: 3rem;
+  width: auto;
+  display: inline-block;
+  visibility: hidden;
+  position: fixed;
+  overflow: auto;
+}

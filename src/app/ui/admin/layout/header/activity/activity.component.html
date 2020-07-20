@@ -1,0 +1,29 @@
+<div class="btn-group" role="group">
+    <button type="button" class="btn btn-rounded btn-dual-secondary" id="page-header-notifications"
+      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <i class="si si-bell"></i>
+      <!-- <span class="badge badge-primary badge-pill">5</span> -->
+    </button>
+    <div class="dropdown-menu dropdown-menu-right min-width-300" aria-labelledby="page-header-notifications"
+      x-placement="bottom-end"
+      style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(69px, 34px, 0px);">
+      <h5 class="h6 text-center py-10 mb-0 border-b text-uppercase">Actividad</h5>
+      <ul class="list-unstyled my-20">
+        <li *ngFor="let log of logs">
+          <a class="text-body-color-dark media mb-15" href="javascript:void(0)">
+            <div class="ml-5 mr-15">
+              <i class="{{icon(log)}} text-{{color(log)}}"></i>
+            </div>
+            <div class="media-body pr-10">
+              <p class="mb-0"><b>{{log.usuario}} </b>{{texto(log)}}</p>
+              <div class="text-muted font-size-sm font-italic">{{log.timestamp | date:'dd/MM/yyyy hh:mm:ss a'}}</div>
+            </div>
+          </a>
+        </li>
+      </ul>
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item text-center mb-0" routerLink="/actividad">
+        <i class="fa fa-flag mr-5"></i> Ver todo
+      </a>
+    </div>
+  </div>

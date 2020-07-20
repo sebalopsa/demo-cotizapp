@@ -1,0 +1,100 @@
+<div class="content js-appear-enabled animated fadeIn">
+  <nav class="breadcrumb bg-white push">
+    <span class="breadcrumb-item text-uppercase">Trabajadores</span>
+    <a class="breadcrumb-item text-uppercase" routerLink="/trabajadores/nominas">Nóminas Mensuales</a>
+    <span class="breadcrumb-item active">Ingreso de Nómina Mensual</span>
+  </nav>
+
+  <div class="content">
+    <!-- <div class="my-20 text-center">
+      <h2 class="font-w700 text-muted mb-10">Ingreso de Nómina Mensual</h2>
+    </div> -->
+    <div class="row">
+      <div class="col-lg-6 offset-lg-3">
+        <div class="block block-bordered">
+          <div class="block-content tab-content">
+            <div class="tab-pane active" id="crypto-buy">
+              <form [formGroup]="form">
+                <div class="text-center">
+                  <a class="btn btn-sm btn-outline-primary" href="/assets/files/plantilla_nomina.xlsx" download>
+                    <i class="fa fa-download"></i> Descargar Formato</a>
+                </div>
+                <hr>
+                <div class="form-group row">
+                  <label class="col-6">Año</label>
+                  <label class="col-6">Mes</label>
+                  <div class="col-6 border-r">
+                    <div class="input-group">
+                      <select formControlName="year" type="text" class="form-control">
+                        <option *ngFor="let year of years" value="{{year}}">{{year}}</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="input-group">
+                      <select formControlName="month" type="text" class="form-control">
+                        <option *ngFor="let month of months" value="{{mesNumero(month)}}">{{month}}</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-12" for="crypto-buy-to">Seleccionar Archivo</label>
+                  <div class="col-12">
+                    <div class="input-group input-group-lg">
+                      <input type="file" class="form-control" (change)="onFileChange($event)">
+                    </div>
+                  </div>
+                </div>
+                <hr>
+                <div class="row justify-content-around">
+                  <div class="col-8">
+                    <table class="table table-sm table-borderless">
+                      <tbody>
+                        <tr>
+                          <td><strong>Trabajadores:</strong></td>
+                          <td>{{nomina?.resumen?.registros || 0}}</td>
+                        </tr>
+                        <tr>
+                          <td><strong>Anticipo:</strong></td>
+                          <td>${{nomina?.resumen?.anticipo || 0 | number:'1.0-0'}}</td>
+                        </tr>
+                        <tr>
+                          <td><strong>Fin de Mes:</strong></td>
+                          <td>${{nomina?.resumen?.finDeMes || 0 | number:'1.0-0'}}</td>
+                        </tr>
+                        <tr>
+                          <td><strong>Leyes Sociales:</strong></td>
+                          <td>${{nomina?.resumen?.finDeMes || 0 | number:'1.0-0'}}</td>
+                        </tr>
+                        <tr>
+                          <td><strong>Impuesto Único:</strong></td>
+                          <td>${{nomina?.resumen?.impuestoUnico || 0 | number:'1.0-0'}}</td>
+                        </tr>
+                        <tr>
+                          <td><strong>Total Mes:</strong></td>
+                          <td>${{nomina?.resumen?.total || 0 | number:'1.0-0'}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <hr>
+                <div class="text-center pb-20">
+                  <button [disabled]="!nomina || !file" class="btn btn-rounded btn-alt-success"
+                    (click)="guardarNomina()">
+                    <i class="fa fa-check"></i> Confirmar y Guardar</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center">
+      <a class="btn btn-rounded btn-alt-secondary" routerLink="/trabajadores/nominas">
+        <i class="fa fa-arrow-left mr-10"></i> Volver
+      </a>
+    </div>
+  </div>
+</div>

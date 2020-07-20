@@ -1,0 +1,82 @@
+<div class="block-content block-content-full">
+  <h2 class="content-heading text-black pt-20">Datos Laborales</h2>
+
+  <table class="table table-sm table-borderless table-vcenter table-hover">
+
+
+    <tbody *ngIf="!editing">
+
+      <tr>
+        <th class="text-left" scope="row"><label>Cargo: </label></th>
+        <td><span class="datos-trabajador">
+            {{trabajador?.cargo}}</span></td>
+
+      </tr>
+      <tr>
+        <th class="text-left" scope="row"><label>Fecha de Ingreso: </label></th>
+        <td><span class="datos-trabajador">
+            {{trabajador?.fechaIngreso}}</span></td>
+
+      </tr>
+
+      <tr>
+        <th class="text-left" scope="row"><label>Tipo de Contrato: </label></th>
+        <td><span class="datos-trabajador">
+            {{trabajador?.tipoContrato}}</span></td>
+
+      </tr>
+      <tr>
+        <th class="text-left" scope="row"><label>Empleador: </label></th>
+        <td><span class="datos-trabajador">
+            {{trabajador?.empleador | rut}}</span></td>
+
+      </tr>
+
+
+    </tbody>
+
+    <tbody *ngIf="editing" [formGroup]="trabajadorForm">
+
+        <tr>
+          <th class="text-left" scope="row"><label>Cargo: </label></th>
+          <td>
+              <input type="text" class="form-control form-control-sm" formControlName="cargo" placeholder="Cargo">
+          </td>
+  
+        </tr>
+        <tr>
+          <th class="text-left" scope="row"><label>Fecha de Ingreso: </label></th>
+          <td>
+              <input type="date" class="form-control form-control-sm" formControlName="fechaIngreso" placeholder="Fecha de ingreso">
+          </td>
+  
+        </tr>
+  
+        <tr>
+          <th class="text-left" scope="row"><label>Tipo de Contrato: </label></th>
+          <td>
+              <select class="form-control form-control-sm" formControlName="tipoContrato">
+                  <option value="{{null}}">--Seleccione--</option>
+                  <option value="INDEFINIDO">INDEFINIDO</option>
+                  <option value="PLAZO FIJO">PLAZO FIJO</option>
+              </select>
+          </td>
+  
+        </tr>
+        <tr>
+          <th class="text-left" scope="row"><label>Empleador: </label></th>
+          <td>
+              <select class="form-control form-control-sm" formControlName="empleador">
+                  <option value="{{null}}">--Seleccione--</option>
+                  <option value="761328344">76.132.834-4</option>
+                  <option value="768505977">76.850.597-7</option>
+              </select>
+          </td>
+  
+        </tr>
+  
+  
+      </tbody>
+
+  </table>
+</div>

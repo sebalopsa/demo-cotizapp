@@ -1,0 +1,71 @@
+<card-template cardTitle="documentos">
+  <ng-template #btnTemplate>
+    <a class="card-action btn-block-option" (click)="modalAgregar()" ngbTooltip="Subir documento(s)">
+      <i class="fa fa-plus text-white"></i>
+    </a>
+  </ng-template>
+
+  <ng-template #componentTemplate>
+
+        <table *ngIf="proyecto?.documentos?.length" class="table table-hover table-sm table-vcenter">
+          <thead>
+            <tr class="text-muted font-size-sm text-center">
+              <th scope="col">Nombre</th>
+              <th scope="col">Validez</th>
+              <th scope="col">Ext.</th>
+              <th scope="col">Peso</th>
+              <th scope="col">Acc.</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="text-muted text-center" style="height:3em;font-size: 14px;"
+              *ngFor="let doc of proyecto?.documentos; let i = index" (mouseenter)="hovered = i"
+              (mouseleave)="hovered = null">
+              <td ngbTooltip="{{doc?.nombre}}" container="body" class="text-left pl-10" style="max-width: 5em">
+                {{doc?.nombre}}
+              </td>
+              <td class="small" style="min-width: 80px;">
+                <i>{{doc?.vencimiento?.activo?'válido hasta ': 'no vence'}}</i>
+                <br>
+                <i *ngIf="doc.vencimiento.activo">{{doc?.vencimiento?.fechaEpoch | date:'dd-MM-yyyy'}}</i>
+              </td>
+              <td>
+                {{doc?.tipo?.split('/').slice(1).join('/')}}
+              </td>
+              <td class="small" style="min-width: 60px;">
+                {{doc?.peso | filesize}}
+              </td>
+              <td style="width:28%;">
+
+                <div ngbDropdown container="body" class="d-inline-block">
+                  <button class="btn btn-hover btn-alt-primary btn-circle btn-sm" id="dropdownBasic1"
+                    ngbDropdownToggle><i class="fa fa-bars"></i></button>
+                  <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                    <button ngbDropdownItem [disabled]="!doc.url" (click)="descargar(doc.url)"><i
+                        class="fa fa-eye"></i>&nbsp; Ver</button>
+                    <button ngbDropdownItem (click)="modalEditar(doc, i)"><i placement="bottom"
+                        class="fa fa-edit"></i>&nbsp;Editar</button>
+                    <button ngbDropdownItem [disabled]="subiendo" (click)="openEliminarConfirm()"><i class="fa fa-trash"></i>&nbsp; Eliminar</button>
+                  </div>
+                </div>
+                <ng-template #popConfirm>
+                  <div class="text-center">
+                    <button type="button" class="btn btn-sm btn-outline-danger mr-2" (click)="p.close()">
+                      No
+                    </button>
+                    <button type="button" class="btn btn-sm btn-danger" (click)="eliminar(i, doc.url);p.close()">
+                      Si
+                    </button>
+                  </div>
+                </ng-template>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div *ngIf=" !proyecto?.documentos?.length" class="text-center my-50">
+          <i class="fa fa-files-o fa-3x text-body-bg-dark"></i>
+        </div>
+
+  </ng-template>
+
+</card-template>

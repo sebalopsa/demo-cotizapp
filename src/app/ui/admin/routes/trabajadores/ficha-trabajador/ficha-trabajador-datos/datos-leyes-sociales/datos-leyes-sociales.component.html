@@ -1,0 +1,57 @@
+<div class="block-content block-content-full">
+  <h2 class="content-heading text-black pt-20">Leyes Sociales</h2>
+
+  <table class="table table-sm table-borderless table-vcenter table-hover">
+
+
+    <tbody *ngIf="!editing">
+
+      <tr>
+        <th class="text-left" scope="row"><label>Previsión Social: </label></th>
+        <td><span class="datos-trabajador">
+            {{trabajador?.previsionSocial}}</span></td>
+
+      </tr>
+      <tr>
+        <th class="text-left" scope="row"><label>Previsión de Salud: </label></th>
+        <td><span class="datos-trabajador">
+            {{trabajador?.previsionSalud}}</span></td>
+
+      </tr>
+
+
+
+
+    </tbody>
+
+    <tbody *ngIf="editing" [formGroup]="trabajadorForm">
+
+      <tr>
+        <th class="text-left" scope="row"><label>Previsión Social: </label></th>
+        <td>
+          <select class="form-control form-control-sm" formControlName="previsionSocial">
+            <option value={{null}}>--Seleccione--</option>
+            <option *ngFor="let afp of afps" value="{{afp}}">{{afp}}</option>
+          </select>
+        </td>
+
+      </tr>
+      <tr>
+        <th class="text-left" scope="row"><label>Previsión de Salud: </label></th>
+        <td>
+          <select class="form-control form-control-sm" formControlName="previsionSalud">
+
+            <option value={{null}}>--Seleccione--</option>
+            <option *ngFor="let prevision of previsiones" value="{{prevision}}">{{prevision}}</option>
+          </select>
+        </td>
+
+      </tr>
+
+
+
+
+    </tbody>
+
+  </table>
+</div>

@@ -1,0 +1,11 @@
+<div class="content-heading">
+  RESUMEN
+</div>
+<div class="row gutters-tiny">
+  <div class="col-md-6 col-xl-3">
+    <stat-card [stat]="nTrab" [subtext]="'trabajadores'" [icon]="'fa fa-users'"></stat-card>
+  </div>
+  <div class="col-md-6 col-xl-3">
+    <stat-card [stat]="nDocs" [subtext]="'dctos por vencer'" [icon]="'fa fa-vcard-o'" (click)=openModal() style="cursor: pointer"></stat-card>
+  </div>
+</div>

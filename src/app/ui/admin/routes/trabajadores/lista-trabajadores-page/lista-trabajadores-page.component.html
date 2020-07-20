@@ -1,0 +1,12 @@
+<div class="content js-appear-enabled animated fadeIn">
+  <nav class="breadcrumb bg-white push">
+    <span class="breadcrumb-item text-uppercase">Trabajadores</span>
+    <a class="breadcrumb-item text-uppercase" routerLink="/trabajadores/lista">Lista de Trabajadores</a>
+  </nav>
+  <resumen-trabajadores [trabajadores]="trabajadores"></resumen-trabajadores>
+
+  <lista-trabajadores [loading]="loading" [trabajadores]="trabajadores"></lista-trabajadores>
+</div>
+<nuevo-trabajador-modal></nuevo-trabajador-modal>
+
+

@@ -1,0 +1,22 @@
+.clear {
+  opacity: 0;
+  cursor: pointer;
+  margin: auto 10px auto auto;
+  transition: 0.2s;
+}
+.search {
+  background-color: white;
+  border: 1px solid gainsboro;
+  input {
+    border: none;
+  }
+  &:hover .clear {
+    opacity: 1;
+  }
+}
+
+.scrollable {
+  overflow-y: auto;
+  overflow-x: hidden !important;
+  height: 350px;
+}

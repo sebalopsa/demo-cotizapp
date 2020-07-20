@@ -1,0 +1,76 @@
+<app-modal-template modalTitle="Nuevo gasto">
+  <ng-template #modalBody>
+    <form>
+      <div class="row" [formGroup]="form">
+        <div class="col-6 form-group">
+          <label>Item</label>
+          <input type="text" placeholder="item de ejemplo" class="form-control {{item.touched && item.invalid ? 'is-invalid':''}}
+          {{item.touched && item.valid ? 'is-valid':''}}" formControlName="item">
+        </div>
+        <div class="col-6 form-group">
+          <label>Categoria</label>
+          <select class="form-control {{categoria.touched && categoria.invalid ? 'is-invalid':''}}
+          {{categoria.touched && categoria.valid ? 'is-valid':''}}" id="categoria" [ngbPopover]="popContent"
+            [popoverTitle]="popTitle" [autoClose]="false" triggers="manual" #p="ngbPopover" formControlName="categoria">
+            <option [ngValue]="null" disabled class="text-muted">Elige una categoría</option>
+            <option *ngFor="let categoria of categorias" [ngValue]="categoria"> {{categoria}}</option>
+            <option disabled>-----------------</option>
+            <option value="nueva">Nueva categoría</option>
+          </select>
+        </div>
+
+        <ng-template #popContent>
+          <div>
+            <label>Nueva Categoría:</label>
+            <input #nuevaCategoria required class="form-control">
+          </div>
+          <div class="d-flex justify-content-center">
+            <button type="button" class="btn btn-sm btn-outline-danger my-2" (click)="crearCategoria(nuevaCategoria)">
+              <div *ngIf="loading" class="spinner-border spinner-border-sm">
+              </div>
+              Crear
+            </button>
+          </div>
+
+        </ng-template>
+
+        <ng-template #popTitle><span (click)="categoria.setValue(categorias?categorias[0]:null); p.close()"><i
+              class="text-danger float-right fa fa-close"></i></span>
+        </ng-template>
+
+
+        <div class="col-6 form-group">
+          <label>Monto</label>
+          <input type="number" placeholder="$" class="form-control {{monto.touched && monto.invalid ? 'is-invalid':''}}
+          {{monto.touched && monto.valid ? 'is-valid':''}}" formControlName="monto">
+        </div>
+
+        <div class="form-group col-6">
+          <label for="desde">Fecha:</label>
+          <div class="input-group">
+            <input class="form-control" id="desde" formControlName="registro" ngbDatepicker #d="ngbDatepicker">
+            <div class="input-group-append">
+              <button class="btn btn-outline-primary" (click)="d.toggle()" type="button"><i
+                  class="fa fa-calendar"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <dropzone-btn [docName]="'gasto'" (fileLoaded)="file.setValue($event)"></dropzone-btn>
+    </form>
+  </ng-template>
+
+  <ng-template #modalFooter>
+    <span *ngIf="form.invalid && (form.touched)" class="invalid">
+      Debe completar todos los campos con datos válidos.
+    </span>
+    <button type="button" [disabled]="uploading || form.invalid" class="btn btn-lg btn-alt-{{uploading?'success':'info'}}"
+      (click)="guardar()">
+      <i *ngIf="!uploading" class="si si-cloud-upload mr-5"></i>
+      <i *ngIf="uploading" class="fa fa-circle-o-notch fa-spin mr-5"></i>
+      {{uploading?'Subiendo':'Subir'}}
+    </button>
+  </ng-template>
+</app-modal-template>
+

@@ -1,0 +1,14 @@
+td{
+    vertical-align: middle;
+    overflow-x: hidden !important;
+    text-overflow: ellipsis;
+}
+
+.botones-row{
+    visibility: hidden;
+    min-width: 4em
+}
+
+tr:hover .botones-row{
+    visibility: visible
+}

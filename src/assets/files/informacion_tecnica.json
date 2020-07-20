@@ -1,0 +1,26 @@
+[
+  {
+    "nombre": "termofusion",
+    "unidad": "un.",
+    "tipo": {
+      "PE/PN": ["PE80-PN3.2","PE80-PN5","PE80-PN6","PE80-PN8","PE80-PN10","PE80-PN12.5","PE80-PN16","PE100-PN4","PE100-PN6","PE100-PN8","PE100-PN10","PE100-PN12.5","PE100-PN16","PE100-PN20"],
+      "DIÁMETRO": ["16mm","20mm","25mm","32mm","40mm","50mm","63mm","75mm","90mm","110mm","125mm","140mm","160mm","180mm","200mm","225mm","250mm","280mm","315mm","355mm","400mm","450mm","500mm","560mm","630mm","710mm","800mm","900mm","1000mm","1200mm"]
+    }
+  }
+  ,
+  {
+    "nombre": "hdpe",
+    "unidad": "m²",
+    "tipo": {"ESPESOR": ["0.75mm","1.0mm", "1.5mm", "2.0mm", "2.5mm"]}
+  },
+  {
+    "nombre": "lldpe",
+    "unidad": "m²",
+    "tipo": {"ESPESOR": ["0.75mm","1.0mm", "1.5mm", "2.0mm", "2.5mm"]}
+  },
+  {
+    "nombre": "geotextil",
+    "unidad": "m²",
+    "tipo": {"RESISTENCIA": ["130grs/m²", "150grs/m²", "200grs/m²", "270grs/m²", "300grs/m²", "350grs/m²", "400grs/m²", "500grs/m²"]}
+  }
+]

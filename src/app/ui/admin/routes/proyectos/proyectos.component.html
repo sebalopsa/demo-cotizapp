@@ -1,0 +1,19 @@
+<div class="content">
+  <div class="block-content px-30 py-0">
+    <div class="content-heading text-uppercase font-weight-bold">
+      Proyectos (<span class="text-primary">{{(proyectos$ | async | filter: filter)?.length}}</span>)
+      <a (click)="toggleSearch()" class="text-primary-light"><i class="fa fa-search ml-10"></i></a>
+      <button (click)=nuevoProyecto() type="button" class="btn btn-lg btn-outline-primary float-right">
+        Nuevo Proyecto <i class="fa fa-plus ml-5"></i>
+      </button>
+    </div>
+    <search *ngIf="search" [(searchText)]="filter" style="width:50%"></search>
+    <div class="row my-10">
+      <div *ngFor="let proyecto of proyectos$ | async | filter:filter" class="col-md-6 col-xl-3">
+        <app-card [proyecto]="proyecto"></app-card>
+      </div>
+    </div>
+  </div>
+</div>
+
+

@@ -1,0 +1,66 @@
+<table class="table table-borderless table-hover">
+  <!-- ENCABEZADOS -->
+  <thead>
+    <tr>
+      <th>NRO.</th>
+      <th>FECHA</th>
+      <th>SERVICIO</th>
+      <th>MONTO/IVA</th>
+      <th class="text-center">ESTADO</th>
+      <th>ACCIONES</th>
+    </tr>
+  </thead>
+  <!-- //ENCABEZADOS -->
+  <tbody>
+    <tr *ngFor="let ep of items" [@collapse] [@collapseOnLeave] class="{{ep.estado=='nulo'?'nulo':''}}">
+      <!-- FOLIO -->
+      <td>
+        <a class="font-w600">{{ep?.folio}}</a>
+      </td>
+      <!-- FECHA -->
+      <td class="d-none d-sm-table-cell">
+        <i>{{ep?.fecha | date:'dd-MM-yyyy'}}</i> </td>
+      <!-- SERVICIO/CLIENTE -->
+      <td class="d-none d-sm-table-cell">
+        <span class="font-w600 text-muted">{{ep?.servicio}}</span><br> <i class="font-weight-normal">para
+        </i><span class="text-muted">{{ep?.cliente?.nombre}}</span>
+      </td>
+      <!-- MONTO/IVA -->
+      <td class="text-right">
+        <span class="text-black">${{ep?.totalNeto | number:'1.0-0'}}</span> <br> <span class="text-muted">${{ep?.iva
+                  | number:'1.0-0'}}</span>
+      </td>
+      <td class="text-center">
+        <div class="btn-group" role="group">
+          <a class="dropdown-toggle" id="btnGroupDrop1" data-toggle="dropdown" aria-haspopup="false"
+            aria-expanded="false">
+            <span *ngIf="ep?.estado == 'pendiente'" class="badge badge-info">Pendiente</span>
+            <span *ngIf="ep?.estado == 'facturado'" class="badge badge-success">Facturado</span>
+            <span *ngIf="ep?.estado == 'nulo'" class="badge badge-secondary">Nulo</span>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="btnGroupDrop1" x-placement="bottom-start"
+            style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 34px, 0px);">
+            <a class="dropdown-item text-info" (click)="cambiarEstado(ep.id, 'pendiente')">
+              <i class="fa fa-fw fa-clock-o mr-5"></i>Pendiente
+            </a>
+            <a class="dropdown-item text-success" (click)="cambiarEstado(ep.id, 'facturado')">
+              <i class="fa fa-fw fa-check-square-o mr-5"></i>Facturado
+            </a>
+            <a class="dropdown-item text-muted" (click)="cambiarEstado(ep.id, 'nulo')">
+              <i class="fa fa-fw fa-trash-o mr-5"></i>Nulo
+            </a>
+          </div>
+        </div>
+      </td>
+      <td class="d-none d-sm-table-cell">
+        <button type="button" class="btn btn-sm btn-circle btn-alt-secondary mr-5 mb-5"
+          (click)="verPdf(ep?.url)">
+          <i class="fa fa-download"></i>
+        </button>
+        <button type="button" class="btn btn-sm btn-circle btn-alt-success mr-5 mb-5" (click)="clonar(ep)">
+          <i class="fa fa-clone text"></i>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

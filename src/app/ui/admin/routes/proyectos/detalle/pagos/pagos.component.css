@@ -1,0 +1,33 @@
+.block-content.accordion{
+    visibility: hidden;
+    opacity: 0;
+    height: 0px!important;
+    padding: 0px;
+    transition: height 0.2s, opacity 0.8s;
+}
+
+.block-content.accordion.extended{
+    visibility: visible;
+    opacity: 1;
+    height: 200px!important;
+}
+
+td .hovered{
+    display:none;
+}
+
+tr:hover .hovered{
+    display: inline;
+}
+
+td .no-hovered{
+    display: inline;
+}
+
+tr:hover td .no-hovered{
+    display:none;
+}
+
+.btn{
+    margin-right: 0!important
+}

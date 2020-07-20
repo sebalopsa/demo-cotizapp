@@ -1,0 +1,17 @@
+.pointer{
+    cursor: pointer;
+}
+
+.scrollable {
+    overflow-y: auto;
+    overflow-x: hidden!important;
+    height: 350px
+}
+
+.block-content{
+    height: 100%;
+}
+
+.modal-header{
+    background-color: #212529;
+}

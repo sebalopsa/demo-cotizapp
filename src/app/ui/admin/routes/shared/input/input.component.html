@@ -1,0 +1,15 @@
+<div class="form-group" [formGroup]="getControlParent(control)">
+    <label *ngIf="label" class="text-capitalize">{{label}}</label>
+    <div class="input-group" [ngSwitch]="type">
+        <datepicker [disabled]="disabled" *ngSwitchCase="'date'" [formControlName]="getControlName(control)"
+            [maxDate]="maxDate" [minDate]="minDate"></datepicker>
+        <input *ngSwitchCase="'clickable'" class="form-control clickable" (click)="onClick()"
+            [placeholder]="placeholder?placeholder:('Seleccionar...' | titlecase)" 
+            [formControl]="control" 
+            readonly
+            >
+        <input *ngSwitchDefault class="form-control" [formControl]="control"
+            [placeholder]="placeholder?placeholder:(label | titlecase)">
+        <i *ngIf="control.value && !control.disable && type!='date'" class="clear fa fa-times text-muted" (click)="clear()"></i>
+    </div>
+</div>

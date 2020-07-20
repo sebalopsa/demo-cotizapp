@@ -1,0 +1,11 @@
+<div class="content-heading">
+  Ordenes de Compra ({{(oocc | filter: filter).length}})
+</div>
+<div class="block block-rounded">
+  <div class="block-content bg-body-light pb-20">
+    <search [(searchText)]="filter"></search>  
+  </div>
+  <div class="block-content">
+    <table-oocc [items]="oocc | filter: filter"></table-oocc>
+  </div>
+</div>

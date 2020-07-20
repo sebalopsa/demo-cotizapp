@@ -1,0 +1,103 @@
+<div class="block-content block-content-full">
+  <h2 class="content-heading text-black pt-20">Medidas EPP</h2>
+
+  <table class="table table-sm table-borderless table-hover">
+
+
+    <tbody *ngIf="!editing">
+
+      <tr>
+        <th class="text-left" scope="row"><label>Zapato: </label></th>
+        <td><span class="datos-trabajador">
+            {{trabajador?.medidasEpp?.zapato}}</span></td>
+
+      </tr>
+      <tr>
+        <th class="text-left" scope="row"><label>Overol: </label></th>
+        <td><span class="datos-trabajador">
+            {{trabajador?.medidasEpp?.overol}}</span></td>
+
+      </tr>
+
+      <tr>
+        <th class="text-left" scope="row"><label>Geologo: </label></th>
+        <td><span class="datos-trabajador">
+            {{trabajador?.medidasEpp?.geologo}}</span></td>
+
+      </tr>
+      <tr>
+        <th class="text-left" scope="row"><label>Polera: </label></th>
+        <td><span class="datos-trabajador">
+            {{trabajador?.medidasEpp?.polera}}</span></td>
+
+      </tr>
+      <tr>
+        <th class="text-left" scope="row"><label>Chaqueta: </label></th>
+        <td><span class="datos-trabajador">
+            {{trabajador?.medidasEpp?.chaqueta}}</span></td>
+
+      </tr>
+
+
+    </tbody>
+
+<tbody *ngIf="editing" [formGroup]="trabajadorForm.get('medidasEpp')">
+      <tr>
+        <th class="text-left" scope="row"><label>Zapato: </label></th>
+        <td>
+            <input type="text" min="0" max="60" class="form-control form-control-sm
+            {{tallaZapatoControl.invalid && tallaZapatoControl.touched?'is-invalid':''}}" 
+            formControlName="zapato" placeholder="Ingrese talla">
+            <small *ngIf="tallaZapatoControl.invalid && tallaZapatoControl.touched"
+            class="text-danger">Debe estar entre 0 y 60</small>
+        </td>
+      </tr>
+      <tr>
+        <th class="text-left" scope="row"><label>Overol: </label></th>
+        <td>
+            <select class="form-control form-control-sm" formControlName="overol">
+                <option value={{null}} >--Seleccione--</option>
+                <option *ngFor="let talla of tallas" value="{{talla}}">{{talla}}</option>
+              </select>
+        </td>
+
+      </tr>
+
+      <tr>
+        <th class="text-left" scope="row"><label>Geologo: </label></th>
+        <td>
+            <select class="form-control form-control-sm" formControlName="geologo">
+                <option value={{null}} >--Seleccione--</option>
+                <option *ngFor="let talla of tallas" value="{{talla}}">{{talla}}</option>
+              </select>
+        </td>
+
+      </tr>
+      <tr>
+        <th class="text-left" scope="row"><label>Polera: </label></th>
+        <td>
+            <select class="form-control form-control-sm" formControlName="polera">
+                <option value={{null}} >--Seleccione--</option>
+                <option *ngFor="let talla of tallas" value="{{talla}}">{{talla}}</option>
+              </select>
+        </td>
+
+      </tr>
+      <tr>
+        <th class="text-left" scope="row"><label>Chaqueta: </label></th>
+        <td>
+            <select class="form-control form-control-sm" formControlName="chaqueta">
+                <option value={{null}} >--Seleccione--</option>
+                <option *ngFor="let talla of tallas" value="{{talla}}">{{talla}}</option>
+              </select>
+        </td>
+
+      </tr>
+
+      
+      
+
+    </tbody>
+
+  </table>
+</div>
